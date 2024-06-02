@@ -24,7 +24,7 @@ const Banner = () => {
       >
         <SwiperSlide>
           <div className="flex flex-col lg:flex-row justify-center items-center lg:gap-6">
-            <div className="space-y-4">
+            <div className="space-y-4 px-4 lg:px-0">
               <p className="text-sm text-[#FF78BA]">| Hiring happiness</p>
               <h1 className="text-6xl text-[#353B6E] font-bold lg:w-[550px] mx-auto">
                 Hiring the best in the industry.
