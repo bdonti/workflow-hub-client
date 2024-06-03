@@ -20,14 +20,14 @@ import service8 from "../../assets/services/service-8.jpeg";
 
 const Services = () => {
   return (
-    <div className="bg-blue-500 flex flex-col justify-center px-20 mb-20 py-20 rounded-xl">
-      <div className="space-y-4 pb-12">
+    <div className="bg-blue-500 flex flex-col justify-center px-20 mb-20 py-20 rounded-xl mx-2 lg:mx-0">
+      <div className="space-y-4 pb-12 lg:ml-16">
         <p className="text-sm text-white font-semibold">| Our Services</p>
         <h3 className="text-3xl text-white font-bold">
           Why choose Emphires Services
         </h3>
       </div>
-      <div>
+      <div className="lg:ml-16">
         <Swiper
           effect={"coverflow"}
           grabCursor={true}
@@ -49,7 +49,7 @@ const Services = () => {
           <SwiperSlide>
             <div className="relative h-[400px] rounded-xl overflow-hidden">
               <img className="h-[400px] rounded-xl" src={service1} />
-              <div className="absolute bottom-16 left-4 bg-[#FB8CC2] text-white text-[13px] font-bold py-2 px-6 rounded">
+              <div className="absolute bottom-24 lg:bottom-16 left-4 bg-[#FB8CC2] text-white text-[13px] font-bold py-2 px-6 rounded">
                 Consulting
               </div>
               <div className="absolute bottom-4 left-4 text-white text-[24px] font-bold p-2 rounded">
@@ -60,7 +60,7 @@ const Services = () => {
           <SwiperSlide>
             <div className="relative h-[400px] rounded-xl overflow-hidden">
               <img className="h-[400px] rounded-xl" src={service2} />
-              <div className="absolute bottom-16 left-4 bg-[#FB8CC2] text-white text-[13px] font-bold py-2 px-6 rounded">
+              <div className="absolute bottom-24 lg:bottom-16 left-4 bg-[#FB8CC2] text-white text-[13px] font-bold py-2 px-6 rounded">
                 Leadership
               </div>
               <div className="absolute bottom-4 left-4 text-white text-[24px] font-bold p-2 rounded">
@@ -71,7 +71,7 @@ const Services = () => {
           <SwiperSlide>
             <div className="relative h-[400px] rounded-xl overflow-hidden">
               <img className="h-[400px] rounded-xl" src={service3} />
-              <div className="absolute bottom-16 left-4 bg-[#FB8CC2] text-white text-[13px] font-bold py-2 px-6 rounded">
+              <div className="absolute bottom-24 lg:bottom-16 left-4 bg-[#FB8CC2] text-white text-[13px] font-bold py-2 px-6 rounded">
                 Strategic
               </div>
               <div className="absolute bottom-4 left-4 text-white text-[24px] font-bold p-2 rounded">
@@ -82,7 +82,7 @@ const Services = () => {
           <SwiperSlide>
             <div className="relative h-[400px] rounded-xl overflow-hidden">
               <img className="h-[400px] rounded-xl" src={service4} />
-              <div className="absolute bottom-16 left-4 bg-[#FB8CC2] text-white text-[13px] font-bold py-2 px-6 rounded">
+              <div className="absolute bottom-24 lg:bottom-16 left-4 bg-[#FB8CC2] text-white text-[13px] font-bold py-2 px-6 rounded">
                 Management
               </div>
               <div className="absolute bottom-4 left-4 text-white text-[24px] font-bold p-2 rounded">
@@ -93,7 +93,7 @@ const Services = () => {
           <SwiperSlide>
             <div className="relative h-[400px] rounded-xl overflow-hidden">
               <img className="h-[400px] rounded-xl" src={service5} />
-              <div className="absolute bottom-16 left-4 bg-[#FB8CC2] text-white text-[13px] font-bold py-2 px-6 rounded">
+              <div className="absolute bottom-24 lg:bottom-16 left-4 bg-[#FB8CC2] text-white text-[13px] font-bold py-2 px-6 rounded">
                 Training
               </div>
               <div className="absolute bottom-4 left-4 text-white text-[24px] font-bold p-2 rounded">
@@ -104,7 +104,7 @@ const Services = () => {
           <SwiperSlide>
             <div className="relative h-[400px] rounded-xl overflow-hidden">
               <img className="h-[400px] rounded-xl" src={service6} />
-              <div className="absolute bottom-16 left-4 bg-[#FB8CC2] text-white text-[13px] font-bold py-2 px-6 rounded">
+              <div className="absolute bottom-24 lg:bottom-16 left-4 bg-[#FB8CC2] text-white text-[13px] font-bold py-2 px-6 rounded">
                 Motivation
               </div>
               <div className="absolute bottom-4 left-4 text-white text-[24px] font-bold p-2 rounded">
@@ -115,7 +115,7 @@ const Services = () => {
           <SwiperSlide>
             <div className="relative h-[400px] rounded-xl overflow-hidden">
               <img className="h-[400px] rounded-xl" src={service7} />
-              <div className="absolute bottom-16 left-4 bg-[#FB8CC2] text-white text-[13px] font-bold py-2 px-6 rounded">
+              <div className="absolute bottom-24 lg:bottom-16 left-4 bg-[#FB8CC2] text-white text-[13px] font-bold py-2 px-6 rounded">
                 Marketing
               </div>
               <div className="absolute bottom-4 left-4 text-white text-[24px] font-bold p-2 rounded">
@@ -126,7 +126,7 @@ const Services = () => {
           <SwiperSlide>
             <div className="relative h-[400px] rounded-xl overflow-hidden">
               <img className="h-[400px] rounded-xl" src={service8} />
-              <div className="absolute bottom-16 left-4 bg-[#FB8CC2] text-white text-[13px] font-bold py-2 px-6 rounded">
+              <div className="absolute bottom-24 lg:bottom-16 left-4 bg-[#FB8CC2] text-white text-[13px] font-bold py-2 px-6 rounded">
                 Motivation
               </div>
               <div className="absolute bottom-4 left-4 text-white text-[24px] font-bold p-2 rounded">
