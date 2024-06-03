@@ -10,7 +10,7 @@ import specialitiesBanner from "../../assets/specialities.json";
 
 const Specialities = () => {
   return (
-    <div>
+    <div className="mb-20">
       <div className="text-center space-y-2">
         <div>
           <p className="text-sm text-[#FF78BA]">| Our Specialist</p>
