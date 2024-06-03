@@ -1,7 +1,7 @@
 import CountUp from "react-countup";
 const AboutUs = () => {
   return (
-    <div>
+    <div className="mb-20">
       <div className="flex flex-col lg:flex-row lg:justify-between lg:items-center px-4 lg:px-0">
         <div className="space-y-4 lg:w-[600px]">
           <p className="text-sm text-[#FF78BA]">Who are we</p>
@@ -24,7 +24,7 @@ const AboutUs = () => {
               />
               %
             </h1>
-            <p className="text-[#666666]">Our Satisfied Clients</p>
+            <p className="text-[#666666]">Satisfied Clients</p>
           </div>
           <div className="flex flex-col items-center">
             <h1>
