@@ -20,7 +20,7 @@ import service8 from "../../assets/services/service-8.jpeg";
 
 const Services = () => {
   return (
-    <div className="bg-blue-500 flex flex-col justify-center px-20 mb-20 py-20 rounded-xl mx-2 lg:mx-0">
+    <div className="bg-gradient-to-r from-pink-400 to-[#6600FF] flex flex-col justify-center px-20 mb-20 py-20 rounded-xl mx-2 lg:mx-0">
       <div className="space-y-4 pb-12 lg:ml-16">
         <p className="text-sm text-white font-semibold">| Our Services</p>
         <h3 className="text-3xl text-white font-bold">
