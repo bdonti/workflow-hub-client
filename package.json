@@ -12,6 +12,7 @@
   "dependencies": {
     "@egjs/react-flicking": "^4.11.3",
     "countup.js": "^2.8.0",
+    "firebase": "^10.12.2",
     "flowbite-react": "^0.9.0",
     "lottie-react": "^2.4.0",
     "react": "^18.2.0",
