@@ -6,6 +6,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../providers/AuthProvider";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
 import toast from "react-hot-toast";
+import registerBanner from "../../assets/register.json";
 
 const image_hosting_key = import.meta.env.VITE_IMAGE_HOSTING_KEY;
 const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`;
@@ -74,11 +75,15 @@ const Register = () => {
   };
 
   return (
-    <div className="flex flex-col lg:flex-row justify-around items-center gap-6 mt-20 mb-5 lg:mb-5">
-      {/* <div>
-        <Lottie animationData={loginBanner} loop={true} className="h-[500px]" />
-      </div> */}
-      <div className="w-full mx-auto">
+    <div className="flex flex-col lg:flex-row-reverse justify-center items-center gap-12 mt-20 mb-5 lg:mb-5">
+      <div>
+        <Lottie
+          animationData={registerBanner}
+          loop={true}
+          className="h-[500px]"
+        />
+      </div>
+      <div>
         <form
           onSubmit={handleSubmit(onSubmit)}
           className="flex flex-col gap-4 w-full"
