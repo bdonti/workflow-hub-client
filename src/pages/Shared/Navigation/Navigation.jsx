@@ -19,25 +19,19 @@ const Navigation = () => {
         <div className="flex md:order-2 space-x-4">
           {user ? (
             <>
-              <div>
-                <Button onClick={handleLogOut} className="bg-[#0c0833]">
-                  Logout
-                </Button>
-              </div>
+              <Button onClick={handleLogOut} className="bg-[#0c0833]">
+                Logout
+              </Button>
             </>
           ) : (
             <>
               <div className="flex gap-8">
-                <div>
-                  <Link to="/login">
-                    <Button className="bg-[#0c0833]">Login</Button>
-                  </Link>
-                </div>
-                <div>
-                  <Link to="/register">
-                    <Button gradientMonochrome="teal">Register Now</Button>
-                  </Link>
-                </div>
+                <Link to="/login">
+                  <Button className="bg-[#0c0833]">Login</Button>
+                </Link>
+                <Link to="/register">
+                  <Button gradientMonochrome="teal">Register Now</Button>
+                </Link>
               </div>
             </>
           )}

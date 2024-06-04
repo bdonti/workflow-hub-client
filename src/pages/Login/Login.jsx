@@ -6,6 +6,7 @@ import useAxiosPublic from "../../hooks/useAxiosPublic";
 import { useContext, useState } from "react";
 import { AuthContext } from "../../providers/AuthProvider";
 import toast from "react-hot-toast";
+import { FaGoogle } from "react-icons/fa";
 
 const Login = () => {
   const [loginError, setLoginError] = useState("");
@@ -33,6 +34,28 @@ const Login = () => {
         const errorMessage = error.message;
         setLoginError(errorMessage);
       });
+  };
+
+  const handleGoogleSignIn = () => {
+    signInWithGoogle().then((res) => {
+      console.log(res.user);
+      const userInfo = {
+        email: res.user?.email,
+        name: res.user?.displayName,
+        role: "employee",
+      };
+      axiosPublic
+        .post("/users", userInfo)
+        .then((res) => {
+          console.log(res.data);
+          navigate("/");
+          toast.success("Successfully Logged In");
+        })
+        .catch((error) => {
+          const errorMessage = error.message;
+          setLoginError(errorMessage);
+        });
+    });
   };
 
   return (
@@ -67,6 +90,16 @@ const Login = () => {
             Login
           </Button>
         </form>
+
+        <div className="my-4">
+          <Button
+            onClick={handleGoogleSignIn}
+            className="w-full"
+            gradientMonochrome="teal"
+          >
+            Google <FaGoogle className="ml-2"></FaGoogle>
+          </Button>
+        </div>
       </div>
     </div>
   );
