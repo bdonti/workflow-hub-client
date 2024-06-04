@@ -6,10 +6,12 @@ const Root = () => {
   return (
     <div>
       <Navigation></Navigation>
-      <div className="max-w-7xl mx-auto">
+      <div className="max-w-7xl mx-auto min-h-screen">
         <Outlet></Outlet>
       </div>
-      <WebFooter></WebFooter>
+      <div className="min-h-screen">
+        <WebFooter></WebFooter>
+      </div>
     </div>
   );
 };

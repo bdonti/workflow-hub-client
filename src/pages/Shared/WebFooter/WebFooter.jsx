@@ -5,7 +5,7 @@ const WebFooter = () => {
   return (
     <div
       className="bg-cover bg-center bg-no-repeat relative"
-      style={{ backgroundImage: `url(${footerBg})`, minHeight: "800px" }}
+      style={{ backgroundImage: `url(${footerBg})`, minHeight: "950px" }}
     >
       <div className="absolute inset-0 flex flex-col justify-center items-center">
         <Footer container className="bg-transparent">
