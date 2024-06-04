@@ -34,7 +34,7 @@ const Navigation = () => {
                   </Link>
                 </div>
                 <div>
-                  <Link to="/login">
+                  <Link to="/register">
                     <Button gradientMonochrome="teal">Register Now</Button>
                   </Link>
                 </div>

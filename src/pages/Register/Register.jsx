@@ -233,9 +233,11 @@ const Register = () => {
           <Link to="/login" className="text-indigo-400 font-semibold">
             Are you a old user? Please Login!!
           </Link>
-          <Button type="submit">Register</Button>
+          <Button className="bg-[#0c0833]" type="submit">
+            Register
+          </Button>
+          {<span className="font-bold text-red-700 my-2">{errorMessage}</span>}
         </form>
-        {<span className="font-bold text-red-700 my-2">{errorMessage}</span>}
       </div>
     </div>
   );
