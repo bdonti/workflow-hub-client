@@ -1,12 +1,18 @@
 import { Button, Dropdown, Label, TextInput } from "flowbite-react";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import { AuthContext } from "../../../providers/AuthProvider";
+import useAxiosPublic from "../../../hooks/useAxiosPublic";
+import toast from "react-hot-toast";
 
 const WorkSheet = () => {
   const [task, setTask] = useState("");
   const [startDate, setStartDate] = useState(new Date());
+  const axiosPublic = useAxiosPublic();
+  const { user } = useContext(AuthContext);
+  const [taskError, setTaskError] = useState("");
   const {
     register,
     handleSubmit,
@@ -27,9 +33,26 @@ const WorkSheet = () => {
 
   const onSubmit = async (data) => {
     console.log(data);
+    const taskInfo = {
+      email: user?.email,
+      task: data.task,
+      workHours: data.workHours,
+      date: data.date,
+    };
+
+    axiosPublic
+      .post("/tasks", taskInfo)
+      .then((res) => {
+        if (res.data.insertedId) {
+          toast.success("Task Added Successfully");
+        }
+        setTask("");
+        reset();
+      })
+      .catch((error) => setTaskError(error.message));
   };
   return (
-    <div className="mt-10">
+    <div className="mt-10 mx-5 lg:mx-0">
       <div>
         <p className="text-sm text-[#eb6ca9] text-center font-bold">
           Worksheet
@@ -111,11 +134,7 @@ const WorkSheet = () => {
             <Button className="bg-[#0c0833]" type="submit">
               Submit
             </Button>
-            {/* {
-              <span className="font-bold text-red-700 my-2">
-                {errorMessage}
-              </span>
-            } */}
+            {<span className="font-bold text-red-700 my-2">{taskError}</span>}
           </form>
         </div>
         <div></div>

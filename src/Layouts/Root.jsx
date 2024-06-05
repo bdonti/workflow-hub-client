@@ -1,7 +1,7 @@
 import { Outlet } from "react-router-dom";
 import Navigation from "../pages/Shared/Navigation/Navigation";
 import WebFooter from "../pages/Shared/WebFooter/WebFooter";
-import { Toaster } from "react-hot-toast";
+// import { Toaster } from "react-hot-toast";
 
 const Root = () => {
   return (
@@ -13,7 +13,7 @@ const Root = () => {
       <div className="min-h-screen">
         <WebFooter></WebFooter>
       </div>
-      <Toaster position="top-right" reverseOrder={false} />
+      {/* <Toaster position="top-right" reverseOrder={false} /> */}
     </div>
   );
 };
