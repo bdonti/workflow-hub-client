@@ -59,7 +59,7 @@ const WorkSheet = () => {
     .sort((a, b) => new Date(b.date) - new Date(a.date));
 
   return (
-    <div className="mt-10 mx-5 lg:mx-0">
+    <div className="mt-10 mx-5 lg:mx-0 min-h-screen">
       <div>
         <p className="text-sm text-[#eb6ca9] text-center font-bold">
           Worksheet
