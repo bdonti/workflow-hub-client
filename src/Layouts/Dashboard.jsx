@@ -8,7 +8,7 @@ const Dashboard = () => {
   return (
     <div>
       <div className="flex gap-8">
-        <div className="w-[300px] min-h-screen bg-[#323870]">
+        <div className="w-[150px] lg:w-[240px] min-h-screen bg-[#323870]">
           <>
             <div className="space-y-4 mt-5">
               <List className="text-white text-xl list-none">
@@ -26,7 +26,7 @@ const Dashboard = () => {
                 <List.Item>
                   <Link
                     className="flex justify-center items-center gap-2"
-                    to="/"
+                    to="/dashboard/work-sheet"
                   >
                     <LuFileSpreadsheet className="mr-2" />
                     Work Sheet
