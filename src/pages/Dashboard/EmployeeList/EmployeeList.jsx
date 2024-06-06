@@ -1,12 +1,21 @@
-import { Button, Table } from "flowbite-react";
+import { useState } from "react";
+import { Button, Modal, Table } from "flowbite-react";
 import useEmployees from "../../../hooks/useEmployees";
 import { RxCross2 } from "react-icons/rx";
 import { MdVerified } from "react-icons/md";
 import useAxiosPublic from "../../../hooks/useAxiosPublic";
 import toast from "react-hot-toast";
+import { loadStripe } from "@stripe/stripe-js";
+import { Elements } from "@stripe/react-stripe-js";
+
+import Checkout from "./Checkout";
 
 const EmployeeList = () => {
+  const stripePromise = loadStripe(import.meta.env.VITE_PAYMENT_GATEWAY_PK);
   const [employees, refetch] = useEmployees();
+  const [openModals, setOpenModals] = useState(
+    Array(employees.length).fill(false)
+  );
   const axiosPublic = useAxiosPublic();
 
   const handleVerify = async (id) => {
@@ -17,6 +26,18 @@ const EmployeeList = () => {
     } else {
       toast.error("Failed to verify");
     }
+  };
+
+  const handlePayModal = (idx) => {
+    const newOpenModals = [...openModals];
+    newOpenModals[idx] = true;
+    setOpenModals(newOpenModals);
+  };
+
+  const handleCloseModal = (idx) => {
+    const newOpenModals = [...openModals];
+    newOpenModals[idx] = false;
+    setOpenModals(newOpenModals);
   };
 
   return (
@@ -79,7 +100,28 @@ const EmployeeList = () => {
                   </Table.Cell>
                   <Table.Cell className="text-[#353B6E]">
                     {employee.isVerified === true ? (
-                      <Button>Pay</Button>
+                      <>
+                        <Button onClick={() => handlePayModal(idx)}>Pay</Button>
+                        <Modal
+                          show={openModals[idx]}
+                          onClose={() => handleCloseModal(idx)}
+                        >
+                          <Modal.Header>
+                            Pay Salary for {employee.name}
+                          </Modal.Header>
+                          <Modal.Body>
+                            <div className="space-y-6">
+                              <Elements stripe={stripePromise}>
+                                <Checkout
+                                  salary={employee.salary}
+                                  email={employee.email}
+                                  name={employee.name}
+                                />
+                              </Elements>
+                            </div>
+                          </Modal.Body>
+                        </Modal>
+                      </>
                     ) : (
                       <Button disabled>Pay</Button>
                     )}
