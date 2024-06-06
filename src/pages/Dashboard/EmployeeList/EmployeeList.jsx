@@ -2,12 +2,25 @@ import { Button, Table } from "flowbite-react";
 import useEmployees from "../../../hooks/useEmployees";
 import { RxCross2 } from "react-icons/rx";
 import { MdVerified } from "react-icons/md";
+import useAxiosPublic from "../../../hooks/useAxiosPublic";
+import toast from "react-hot-toast";
 
 const EmployeeList = () => {
-  const [employees] = useEmployees();
+  const [employees, refetch] = useEmployees();
+  const axiosPublic = useAxiosPublic();
+
+  const handleVerify = async (id) => {
+    const res = await axiosPublic.put(`/users/verify/${id}`);
+    if (res.status === 200) {
+      await refetch();
+      toast.success("Successfully Verified");
+    } else {
+      toast.error("Failed to verify");
+    }
+  };
 
   return (
-    <div className="mt-10 mx-5 lg:mx-0 min-h-screen">
+    <div className="mt-10 mx-5 lg:mx-0">
       <div>
         <p className="text-sm text-[#eb6ca9] text-center font-bold">
           Employee List
@@ -44,21 +57,25 @@ const EmployeeList = () => {
                   </Table.Cell>
                   <Table.Cell className="text-[#353B6E]">
                     {employee?.isVerified === true ? (
-                      <MdVerified className="text-green-400" />
+                      <MdVerified className="text-green-400 text-2xl" />
                     ) : (
                       <>
                         <div className="flex justify-center items-center gap-4">
-                          <RxCross2 className="text-red-400 text-2xl" />
-                          <Button>Verify</Button>
+                          <RxCross2 className="text-red-700 text-2xl" />
+                          <Button onClick={() => handleVerify(employee._id)}>
+                            Verify
+                          </Button>
                         </div>
                       </>
                     )}
                   </Table.Cell>
                   <Table.Cell className="text-[#353B6E]">
-                    {employee.accountNumber}
+                    {employee.accountNumber
+                      ? employee.accountNumber
+                      : "Not Found"}
                   </Table.Cell>
                   <Table.Cell className="text-[#353B6E]">
-                    {employee.salary}
+                    {employee?.salary ? employee.salary : "Not Found"}
                   </Table.Cell>
                   <Table.Cell className="text-[#353B6E]">
                     <Button>Pay</Button>
