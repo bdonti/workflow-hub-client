@@ -90,6 +90,7 @@ const Checkout = ({ salary, email, name }) => {
           employeeSalary: salary,
           month: month,
           year: year,
+          transactionId: paymentIntent.id,
         };
 
         const res = await axiosPublic.post("/payments", payment);
