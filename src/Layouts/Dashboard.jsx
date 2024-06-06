@@ -5,6 +5,7 @@ import { LuFileSpreadsheet } from "react-icons/lu";
 import { Link, Outlet } from "react-router-dom";
 import useEmployee from "../hooks/useEmployee";
 import useHR from "../hooks/useHR";
+import { PiUsersThreeFill } from "react-icons/pi";
 
 const Dashboard = () => {
   const [isEmployee] = useEmployee();
@@ -57,9 +58,9 @@ const Dashboard = () => {
                   <List.Item>
                     <Link
                       className="flex justify-center items-center gap-2"
-                      to="/"
+                      to="/dashboard/employee-list"
                     >
-                      <FaHome className="mr-2"></FaHome>
+                      <PiUsersThreeFill className="mr-2" />
                       Employee List
                     </Link>
                   </List.Item>

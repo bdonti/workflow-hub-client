@@ -5,6 +5,7 @@ import Login from "../pages/Login/Login";
 import Register from "../pages/Register/Register";
 import Dashboard from "../Layouts/Dashboard";
 import WorkSheet from "../pages/Dashboard/WorkSheet/WorkSheet";
+import EmployeeList from "../pages/Dashboard/EmployeeList/EmployeeList";
 
 const router = createBrowserRouter([
   {
@@ -32,6 +33,10 @@ const router = createBrowserRouter([
       {
         path: "work-sheet",
         element: <WorkSheet></WorkSheet>,
+      },
+      {
+        path: "employee-list",
+        element: <EmployeeList></EmployeeList>,
       },
     ],
   },

@@ -50,6 +50,7 @@ const Register = () => {
                 salary: data.salary,
                 designation: data.designation,
                 image: res.data.data.display_url,
+                isVerified: false,
               };
               axiosPublic.post("/users", userInfo).then((res) => {
                 if (res.data.insertedId) {

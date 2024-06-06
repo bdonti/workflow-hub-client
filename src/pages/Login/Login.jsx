@@ -43,6 +43,7 @@ const Login = () => {
         email: res.user?.email,
         name: res.user?.displayName,
         role: "employee",
+        isVerified: false,
       };
       axiosPublic
         .post("/users", userInfo)
