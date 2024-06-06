@@ -12,6 +12,7 @@
   "dependencies": {
     "@egjs/react-flicking": "^4.11.3",
     "@tanstack/react-query": "^5.40.1",
+    "@tanstack/react-table": "^8.17.3",
     "axios": "^1.7.2",
     "countup.js": "^2.8.0",
     "firebase": "^10.12.2",
