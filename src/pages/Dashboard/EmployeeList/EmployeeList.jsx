@@ -78,7 +78,11 @@ const EmployeeList = () => {
                     {employee?.salary ? employee.salary : "Not Found"}
                   </Table.Cell>
                   <Table.Cell className="text-[#353B6E]">
-                    <Button>Pay</Button>
+                    {employee.isVerified === true ? (
+                      <Button>Pay</Button>
+                    ) : (
+                      <Button disabled>Pay</Button>
+                    )}
                   </Table.Cell>
                   <Table.Cell className="text-[#353B6E]">
                     <Button>Details</Button>
