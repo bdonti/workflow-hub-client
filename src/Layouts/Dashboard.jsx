@@ -4,9 +4,11 @@ import { FaHome } from "react-icons/fa";
 import { LuFileSpreadsheet } from "react-icons/lu";
 import { Link, Outlet } from "react-router-dom";
 import useEmployee from "../hooks/useEmployee";
+import useHR from "../hooks/useHR";
 
 const Dashboard = () => {
   const [isEmployee] = useEmployee();
+  const [isHR] = useHR();
   return (
     <div>
       <div className="flex gap-8">
@@ -21,7 +23,7 @@ const Dashboard = () => {
                       to="/"
                     >
                       <FaHome className="mr-2"></FaHome>
-                      Home
+                      Employee Home
                     </Link>
                   </List.Item>
                 </List>
@@ -33,6 +35,32 @@ const Dashboard = () => {
                     >
                       <LuFileSpreadsheet className="mr-2" />
                       Work Sheet
+                    </Link>
+                  </List.Item>
+                </List>
+              </div>
+            )}
+            {isHR && (
+              <div className="space-y-4 mt-5">
+                <List className="text-white text-xl list-none">
+                  <List.Item>
+                    <Link
+                      className="flex justify-center items-center gap-2"
+                      to="/"
+                    >
+                      <FaHome className="mr-2"></FaHome>
+                      HR Home
+                    </Link>
+                  </List.Item>
+                </List>
+                <List className="text-white text-xl list-none">
+                  <List.Item>
+                    <Link
+                      className="flex justify-center items-center gap-2"
+                      to="/"
+                    >
+                      <FaHome className="mr-2"></FaHome>
+                      Employee List
                     </Link>
                   </List.Item>
                 </List>
