@@ -93,10 +93,26 @@ const Checkout = ({ salary, email, name }) => {
           transactionId: paymentIntent.id,
         };
 
-        const res = await axiosPublic.post("/payments", payment);
-        if (res.data?.paymentResult?.insertedId) {
-          toast.success("Salary Successfully Paid");
-        }
+        axiosPublic
+          .post("/payments", payment)
+          .then((res) => {
+            if (res.data?.paymentResult?.insertedId) {
+              toast.success("Salary Successfully Paid");
+            }
+          })
+          .catch((err) => {
+            if (
+              err.response &&
+              err.response.status === 400 &&
+              err.response.data.message
+            ) {
+              setError(err.response.data.message);
+            } else {
+              setError(
+                "An error occurred while processing your payment. Please try again later."
+              );
+            }
+          });
       }
     }
   };
@@ -171,9 +187,10 @@ const Checkout = ({ salary, email, name }) => {
           Pay
         </button>
         <p className="font-bold text-red-700 my-4">{error}</p>
-        {transactionId && (
+        {transactionId && !error && (
           <p className="font-bold text-green-700 my-4">
-            Salary Successfully Paid! Transaction Id is: {transactionId}
+            Salary Successfully Paid! Transaction Id is: {transactionId}. Please
+            close this window.
           </p>
         )}
       </form>

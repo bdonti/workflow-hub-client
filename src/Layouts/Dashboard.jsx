@@ -6,6 +6,7 @@ import { Link, Outlet } from "react-router-dom";
 import useEmployee from "../hooks/useEmployee";
 import useHR from "../hooks/useHR";
 import { PiUsersThreeFill } from "react-icons/pi";
+import { TfiMoney } from "react-icons/tfi";
 
 const Dashboard = () => {
   const [isEmployee] = useEmployee();
@@ -36,6 +37,17 @@ const Dashboard = () => {
                     >
                       <LuFileSpreadsheet className="mr-2" />
                       Work Sheet
+                    </Link>
+                  </List.Item>
+                </List>
+                <List className="text-white text-xl list-none">
+                  <List.Item>
+                    <Link
+                      className="flex justify-center items-center gap-2"
+                      to="/dashboard/payment-history"
+                    >
+                      <TfiMoney className="mr-2" />
+                      Payment History
                     </Link>
                   </List.Item>
                 </List>
