@@ -1,5 +1,5 @@
 import { Avatar, Card } from "flowbite-react";
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData, useParams } from "react-router-dom";
 import {
   BarChart,
   CartesianGrid,
@@ -10,11 +10,14 @@ import {
   Bar,
   ResponsiveContainer,
 } from "recharts";
+import useEmployees from "../../../hooks/useEmployees";
 
 const EmployeeDetails = () => {
   const details = useLoaderData();
-  const { employeeName, employeeImage, employeeDesignation } =
-    details.length > 0 ? details[0] : {};
+  const { email } = useParams();
+  const [employees, ,] = useEmployees();
+  console.log(employees);
+  const employee = employees.find((emp) => emp.email === email);
 
   const monthNames = {
     "01": "January",
@@ -36,6 +39,14 @@ const EmployeeDetails = () => {
     salary: parseInt(item.employeeSalary),
   }));
 
+  if (!employees) {
+    return <div>Error fetching employee data...</div>;
+  }
+
+  if (!employee) {
+    return <div>No employee found with the provided email</div>;
+  }
+
   return (
     <div>
       <div className="mt-10 mx-5 lg:mx-0">
@@ -43,19 +54,19 @@ const EmployeeDetails = () => {
           Salary vs Month
         </p>
         <h3 className="text-2xl lg:text-4xl text-[#353B6E] font-bold mb-20 text-center">
-          Detailed Report for {employeeName}
+          Detailed Report for {employee?.name}
         </h3>
       </div>
       <div className="grid grid-cols-1 lg:grid-cols-4 gap-4">
         <div>
           <Card className="max-w-sm">
             <div className="flex flex-col items-start pb-10">
-              <Avatar img={employeeImage} size="lg" />
+              <Avatar img={employee?.image} size="lg" />
               <h5 className="mb-1 text-xl font-medium text-gray-900 dark:text-white">
-                {employeeName}
+                {employee?.name}
               </h5>
               <span className="text-sm text-gray-500 dark:text-gray-400">
-                {employeeDesignation}
+                {employee?.designation}
               </span>
             </div>
           </Card>
