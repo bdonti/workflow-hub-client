@@ -7,6 +7,7 @@ import Dashboard from "../Layouts/Dashboard";
 import WorkSheet from "../pages/Dashboard/WorkSheet/WorkSheet";
 import EmployeeList from "../pages/Dashboard/EmployeeList/EmployeeList";
 import PaymentHistory from "../pages/Dashboard/PaymentHistory/PaymentHistory";
+import EmployeeDetails from "../pages/Dashboard/EmployeeDetails/EmployeeDetails";
 
 const router = createBrowserRouter([
   {
@@ -42,6 +43,12 @@ const router = createBrowserRouter([
       {
         path: "employee-list",
         element: <EmployeeList></EmployeeList>,
+      },
+      {
+        path: "details/:email",
+        element: <EmployeeDetails></EmployeeDetails>,
+        loader: ({ params }) =>
+          fetch(`http://localhost:5000/payments/${params.email}`),
       },
     ],
   },

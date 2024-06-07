@@ -9,6 +9,7 @@ import { loadStripe } from "@stripe/stripe-js";
 import { Elements } from "@stripe/react-stripe-js";
 
 import Checkout from "./Checkout";
+import { Link } from "react-router-dom";
 
 const EmployeeList = () => {
   const stripePromise = loadStripe(import.meta.env.VITE_PAYMENT_GATEWAY_PK);
@@ -127,7 +128,9 @@ const EmployeeList = () => {
                     )}
                   </Table.Cell>
                   <Table.Cell className="text-[#353B6E]">
-                    <Button>Details</Button>
+                    <Link to={`/dashboard/details/${employee.email}`}>
+                      <Button>Details</Button>
+                    </Link>
                   </Table.Cell>
                 </Table.Row>
               ))}
