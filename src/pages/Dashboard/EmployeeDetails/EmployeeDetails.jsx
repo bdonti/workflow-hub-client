@@ -1,3 +1,4 @@
+import { Avatar, Card, Dropdown, DropdownItem } from "flowbite-react";
 import { useLoaderData, useParams } from "react-router-dom";
 import {
   BarChart,
@@ -13,6 +14,8 @@ import {
 const EmployeeDetails = () => {
   const details = useLoaderData();
   const { email } = useParams();
+  const { employeeName, employeeImage, employeeDesignation } =
+    details.length > 0 ? details[0] : {};
 
   const monthNames = {
     "01": "January",
@@ -41,8 +44,21 @@ const EmployeeDetails = () => {
           Salary vs Month
         </p>
         <h3 className="text-2xl lg:text-4xl text-[#353B6E] font-bold mb-20 text-center">
-          Detailed Report for user {email}
+          Detailed Report
         </h3>
+      </div>
+      <div className="my-3 flex justify-center">
+        <Card className="max-w-sm">
+          <div className="flex flex-col items-center pb-10">
+            <Avatar img={employeeImage} className="rounded-xl" size="xl" />
+            <h5 className="mb-1 text-xl font-medium text-gray-900 dark:text-white">
+              {employeeName}
+            </h5>
+            <span className="text-sm text-gray-500 dark:text-gray-400">
+              {employeeDesignation}
+            </span>
+          </div>
+        </Card>
       </div>
       {details.length !== 0 ? (
         <>

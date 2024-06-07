@@ -117,6 +117,8 @@ const EmployeeList = () => {
                                   salary={employee.salary}
                                   email={employee.email}
                                   name={employee.name}
+                                  image={employee.image}
+                                  designation={employee.designation}
                                 />
                               </Elements>
                             </div>

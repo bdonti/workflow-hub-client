@@ -6,7 +6,7 @@ import { Label, TextInput } from "flowbite-react";
 import DatePicker from "react-datepicker";
 import toast from "react-hot-toast";
 
-const Checkout = ({ salary, email, name }) => {
+const Checkout = ({ salary, email, name, image, designation }) => {
   const [error, setError] = useState("");
   const [clientSecret, setClientSecret] = useState("");
   const [transactionId, setTransactionId] = useState("");
@@ -88,6 +88,8 @@ const Checkout = ({ salary, email, name }) => {
           employeeEmail: email,
           employeeName: name,
           employeeSalary: salary,
+          employeeImage: image,
+          employeeDesignation: designation,
           month: month,
           year: year,
           transactionId: paymentIntent.id,
