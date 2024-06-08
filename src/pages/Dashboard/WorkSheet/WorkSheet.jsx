@@ -36,6 +36,7 @@ const WorkSheet = () => {
   const onSubmit = async (data) => {
     const taskInfo = {
       email: user?.email,
+      name: user?.name || user?.displayName,
       task: data.task,
       workHours: data.workHours,
       date: data.date,

@@ -7,6 +7,7 @@ import useEmployee from "../hooks/useEmployee";
 import useHR from "../hooks/useHR";
 import { PiUsersThreeFill } from "react-icons/pi";
 import { TfiMoney } from "react-icons/tfi";
+import { GiProgression } from "react-icons/gi";
 
 const Dashboard = () => {
   const [isEmployee] = useEmployee();
@@ -74,6 +75,17 @@ const Dashboard = () => {
                     >
                       <PiUsersThreeFill className="mr-2" />
                       Employee List
+                    </Link>
+                  </List.Item>
+                </List>
+                <List className="text-white text-xl list-none">
+                  <List.Item>
+                    <Link
+                      className="flex justify-center items-center gap-2"
+                      to="/dashboard/progress"
+                    >
+                      <GiProgression className="mr-2" />
+                      Employee Progress
                     </Link>
                   </List.Item>
                 </List>

@@ -8,6 +8,7 @@ import WorkSheet from "../pages/Dashboard/WorkSheet/WorkSheet";
 import EmployeeList from "../pages/Dashboard/EmployeeList/EmployeeList";
 import PaymentHistory from "../pages/Dashboard/PaymentHistory/PaymentHistory";
 import EmployeeDetails from "../pages/Dashboard/EmployeeDetails/EmployeeDetails";
+import EmployeeProgress from "../pages/Dashboard/EmployeeProgress/EmployeeProgress";
 
 const router = createBrowserRouter([
   {
@@ -49,6 +50,10 @@ const router = createBrowserRouter([
         element: <EmployeeDetails></EmployeeDetails>,
         loader: ({ params }) =>
           fetch(`http://localhost:5000/payments/${params.email}`),
+      },
+      {
+        path: "progress",
+        element: <EmployeeProgress></EmployeeProgress>,
       },
     ],
   },
