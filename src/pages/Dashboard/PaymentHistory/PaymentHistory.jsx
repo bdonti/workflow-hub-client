@@ -5,10 +5,12 @@ import {
   TableHead,
   TableRow,
 } from "flowbite-react";
-import usePayment from "../../../hooks/usePayment";
+import { useInfiniteQuery } from "@tanstack/react-query";
+import { useContext } from "react";
+import { AuthContext } from "../../../providers/AuthProvider";
 
 const PaymentHistory = () => {
-  const [payments] = usePayment();
+  const { user } = useContext(AuthContext);
   const monthNames = {
     "01": "January",
     "02": "February",
@@ -23,6 +25,44 @@ const PaymentHistory = () => {
     11: "November",
     12: "December",
   };
+
+  const fetchPayments = async ({ pageParam }) => {
+    const res = await fetch(
+      `http://localhost:5000/payments/?email=${user.email}&_page=${pageParam}`
+    );
+    return res.json();
+  };
+
+  const { data, isLoading, isError } = useInfiniteQuery({
+    queryKey: ["payments", user?.email],
+    queryFn: fetchPayments,
+    initialPageParam: 1,
+    getNextPageParam: (lastPage) => {
+      return lastPage;
+    },
+  });
+
+  if (isLoading) return <div>Loading...</div>;
+  if (isError) return <div>Error fetching data</div>;
+
+  const content = data?.pages.map((payments) => {
+    return payments.map((payment, idx) => (
+      <TableRow
+        key={payment._id}
+        payment={payment}
+        className="bg-white dark:border-gray-700 dark:bg-gray-800"
+      >
+        <TableCell className="text-[#353B6E]">{idx + 1}</TableCell>
+        <TableCell className="text-[#353B6E]">
+          {monthNames[payment.month]} {payment.year}
+        </TableCell>
+        <TableCell className="text-[#353B6E]">
+          {payment.transactionId}
+        </TableCell>
+      </TableRow>
+    ));
+  });
+
   return (
     <div className="mt-10 mx-5 lg:mx-0">
       <div>
@@ -43,20 +83,7 @@ const PaymentHistory = () => {
             <Table.HeadCell>Transaction Id</Table.HeadCell>
           </TableHead>
           <TableBody className="bg-white divide-y divide-gray-200">
-            {payments.map((payment, idx) => (
-              <TableRow
-                key={payment._id}
-                className="bg-white dark:border-gray-700 dark:bg-gray-800"
-              >
-                <TableCell className="text-[#353B6E]">{idx + 1}</TableCell>
-                <TableCell className="text-[#353B6E]">
-                  {monthNames[payment.month]} {payment.year}
-                </TableCell>
-                <TableCell className="text-[#353B6E]">
-                  {payment.transactionId}
-                </TableCell>
-              </TableRow>
-            ))}
+            {content}
           </TableBody>
         </Table>
       </div>
