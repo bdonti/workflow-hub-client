@@ -1,7 +1,7 @@
 import { Button, Label, TextInput } from "flowbite-react";
 import Lottie from "lottie-react";
 import loginBanner from "../../assets/login.json";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
 import { useContext, useState } from "react";
 import { AuthContext } from "../../providers/AuthProvider";
@@ -11,6 +11,7 @@ import { FaGoogle } from "react-icons/fa";
 const Login = () => {
   const [loginError, setLoginError] = useState("");
   const navigate = useNavigate();
+  const location = useLocation();
 
   const axiosPublic = useAxiosPublic();
 
@@ -27,7 +28,7 @@ const Login = () => {
         // Signed in
         const user = userCredential.user;
         console.log(user);
-        navigate("/");
+        navigate(location.state ? location.state : "/");
         toast.success("Successfully Logged In");
       })
       .catch((error) => {
@@ -49,7 +50,7 @@ const Login = () => {
         .post("/users", userInfo)
         .then((res) => {
           console.log(res.data);
-          navigate("/");
+          navigate(location.state ? location.state : "/");
           toast.success("Successfully Logged In");
         })
         .catch((error) => {
