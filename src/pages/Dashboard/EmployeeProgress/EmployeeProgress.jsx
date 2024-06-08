@@ -8,12 +8,15 @@ import {
   TableHead,
   TableRow,
 } from "flowbite-react";
+import useEmployees from "../../../hooks/useEmployees";
 
 const EmployeeProgress = () => {
   const [selectedName, setSelectedName] = useState("");
   const [selectedMonth, setSelectedMonth] = useState("");
-  const [employeeNames, setEmployeeNames] = useState([]);
+  const [employees, ,] = useEmployees();
   const [tasks, refetch, loading] = useTasks(selectedName, selectedMonth);
+
+  const employeeNames = employees.map((employee) => employee.name);
 
   const monthNames = [
     "January",
@@ -29,13 +32,6 @@ const EmployeeProgress = () => {
     "November",
     "December",
   ];
-
-  useEffect(() => {
-    if (tasks.length > 0) {
-      const names = [...new Set(tasks.map((task) => task.name))];
-      setEmployeeNames(names);
-    }
-  }, []);
 
   const handleNameChange = (event) => {
     const selectedValue = event.target.value;
