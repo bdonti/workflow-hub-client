@@ -47,6 +47,8 @@ const EmployeeDetails = () => {
     return <div>No employee found with the provided email</div>;
   }
 
+  const shouldRotateLabels = employeeData.length > 7;
+
   return (
     <div>
       <div className="mt-10 mx-5 lg:mx-0">
@@ -81,7 +83,7 @@ const EmployeeDetails = () => {
                     top: 5,
                     right: 30,
                     left: 20,
-                    bottom: 40,
+                    bottom: shouldRotateLabels ? 40 : 10,
                   }}
                 >
                   <CartesianGrid strokeDasharray="3 3" />
@@ -90,6 +92,8 @@ const EmployeeDetails = () => {
                     dataKey="monthYear"
                     textAnchor="middle"
                     interval={0}
+                    angle={shouldRotateLabels ? -45 : 0}
+                    dy={shouldRotateLabels ? 10 : 0}
                   />
                   <YAxis />
                   <Tooltip />
