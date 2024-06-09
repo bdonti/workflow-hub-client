@@ -10,6 +10,7 @@ import PaymentHistory from "../pages/Dashboard/PaymentHistory/PaymentHistory";
 import EmployeeDetails from "../pages/Dashboard/EmployeeDetails/EmployeeDetails";
 import EmployeeProgress from "../pages/Dashboard/EmployeeProgress/EmployeeProgress";
 import PrivateRoute from "../providers/PrivateRoute";
+import AllEmployees from "../pages/Dashboard/AllEmployees/AllEmployees";
 
 const router = createBrowserRouter([
   {
@@ -59,6 +60,10 @@ const router = createBrowserRouter([
       {
         path: "progress",
         element: <EmployeeProgress></EmployeeProgress>,
+      },
+      {
+        path: "all-employee-list",
+        element: <AllEmployees></AllEmployees>,
       },
     ],
   },

@@ -1,6 +1,6 @@
 import { List } from "flowbite-react";
 import { Toaster } from "react-hot-toast";
-import { FaHome } from "react-icons/fa";
+import { FaHome, FaUsers } from "react-icons/fa";
 import { LuFileSpreadsheet } from "react-icons/lu";
 import { Link, Outlet } from "react-router-dom";
 import useEmployee from "../hooks/useEmployee";
@@ -17,7 +17,7 @@ const Dashboard = () => {
   return (
     <div>
       <div className="flex gap-8">
-        <div className="w-[150px] lg:w-[240px] min-h-screen bg-[#323870]">
+        <div className="w-[150px] lg:w-[240px] min-h-screen bg-[#323870] text-start">
           <>
             {isEmployee && (
               <div className="space-y-4 mt-5">
@@ -103,6 +103,17 @@ const Dashboard = () => {
                     >
                       <FaHome className="mr-2"></FaHome>
                       Admin Home
+                    </Link>
+                  </List.Item>
+                </List>
+                <List className="text-white text-xl list-none">
+                  <List.Item>
+                    <Link
+                      className="flex justify-center items-center gap-2"
+                      to="/dashboard/all-employee-list"
+                    >
+                      <FaUsers className="mr-2" />
+                      All Employees
                     </Link>
                   </List.Item>
                 </List>
