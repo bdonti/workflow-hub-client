@@ -2,7 +2,7 @@ import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import { useEffect, useRef, useState } from "react";
 import useAxiosPublic from "../../../hooks/useAxiosPublic";
 import { getMonth, getYear, setMonth, setYear } from "date-fns";
-import { Label, TextInput } from "flowbite-react";
+import { Button, Label, TextInput } from "flowbite-react";
 import DatePicker from "react-datepicker";
 import toast from "react-hot-toast";
 
@@ -177,17 +177,20 @@ const Checkout = ({ salary, email, name, image, designation }) => {
                 },
               },
             }}
-            className="p-3 border rounded"
+            className="p-3 border rounded my-2"
             ref={cardElementRef}
           />
         </div>
-        <button
+        <Button
           className="btn btn-sm btn-primary my-4 w-full"
           type="submit"
           disabled={!stripe || !clientSecret}
+          color="blue"
+          size="xs"
+          pill
         >
           Pay
-        </button>
+        </Button>
         <p className="font-bold text-red-700 my-4">{error}</p>
         {transactionId && !error && (
           <p className="font-bold text-green-700 my-4">
