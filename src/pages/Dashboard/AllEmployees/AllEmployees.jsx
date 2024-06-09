@@ -1,12 +1,50 @@
-import { Button, Spinner, Table } from "flowbite-react";
+import { Button, Spinner, Table, TextInput } from "flowbite-react";
 import useAllEmployees from "../../../hooks/useAllEmployees";
 import Swal from "sweetalert2";
 import useAxiosPublic from "../../../hooks/useAxiosPublic";
+import toast from "react-hot-toast";
 
 const AllEmployees = () => {
   const [allEmployees, refetch, loading] = useAllEmployees();
   const axiosPublic = useAxiosPublic();
   console.log(allEmployees);
+
+  const handleSalaryChange = (e, employeeId) => {
+    e.preventDefault();
+    console.log(employeeId);
+    const form = e.target;
+    const newSalary = form.newSalary.value;
+
+    const employee = allEmployees.find((emp) => emp._id === employeeId);
+
+    if (parseInt(newSalary) < parseInt(employee.salary)) {
+      toast.error("New salary cannot be less than current one");
+      form.newSalary.value = employee.salary;
+      return;
+    }
+
+    axiosPublic
+      .put(`/users/adjust-salary/${employeeId}`, { newSalary })
+      .then((res) => {
+        if (res.data.modifiedCount > 0) {
+          refetch();
+          toast.success("Salary updated successfully");
+        } else {
+          toast.error(`Failed to update the salary`);
+        }
+      });
+  };
+
+  const handleMakeHR = (employee) => {
+    axiosPublic.put(`/users/make-hr/${employee._id}`).then((res) => {
+      if (res.data.modifiedCount > 0) {
+        refetch();
+        toast.success(`${employee.name} has been promoted to HR!!!`);
+      } else {
+        toast.error(`Failed to promote ${employee.name}`);
+      }
+    });
+  };
 
   const handleFire = (employee) => {
     Swal.fire({
@@ -64,9 +102,11 @@ const AllEmployees = () => {
   return (
     <div>
       <div className="mt-10 mx-5 lg:mx-0">
-        <p className="text-sm text-[#eb6ca9] text-center font-bold">Progress</p>
+        <p className="text-sm text-[#eb6ca9] text-center font-bold">
+          Company Status
+        </p>
         <h3 className="text-2xl lg:text-4xl text-[#353B6E] font-bold mb-10 text-center">
-          Showing all the Progress
+          Handle Your Employees
         </h3>
       </div>
       <div>
@@ -82,7 +122,7 @@ const AllEmployees = () => {
               <Table.HeadCell>#</Table.HeadCell>
               <Table.HeadCell>Name</Table.HeadCell>
               <Table.HeadCell>Designation</Table.HeadCell>
-              <Table.HeadCell>Salary</Table.HeadCell>
+              <Table.HeadCell>Increase Salary</Table.HeadCell>
               <Table.HeadCell>Make HR</Table.HeadCell>
               <Table.HeadCell>Fire</Table.HeadCell>
             </Table.Head>
@@ -102,7 +142,22 @@ const AllEmployees = () => {
                       : "Not available"}
                   </Table.Cell>
                   <Table.Cell className="text-[#353B6E]">
-                    {employee.salary}
+                    <form
+                      onSubmit={(e) => handleSalaryChange(e, employee._id)}
+                      className="space-y-4"
+                    >
+                      <TextInput
+                        type="number"
+                        name="newSalary"
+                        defaultValue={employee.salary}
+                        placeholder="Salary"
+                        className="w-1/4"
+                        required
+                      />
+                      <Button type="submit" color="dark" pill>
+                        Adjust Salary
+                      </Button>
+                    </form>
                   </Table.Cell>
                   <Table.Cell className="text-[#353B6E]">
                     {employee?.role === "hr" ? (
@@ -110,7 +165,11 @@ const AllEmployees = () => {
                         Already HR
                       </Button>
                     ) : (
-                      <Button color="success" size="xs">
+                      <Button
+                        onClick={() => handleMakeHR(employee)}
+                        color="success"
+                        size="xs"
+                      >
                         Make HR
                       </Button>
                     )}
