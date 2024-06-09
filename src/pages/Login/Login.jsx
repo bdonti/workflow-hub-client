@@ -7,21 +7,34 @@ import { useContext, useState } from "react";
 import { AuthContext } from "../../providers/AuthProvider";
 import toast from "react-hot-toast";
 import { FaGoogle } from "react-icons/fa";
+import useAllEmployees from "../../hooks/useAllEmployees";
 
 const Login = () => {
   const [loginError, setLoginError] = useState("");
   const navigate = useNavigate();
   const location = useLocation();
+  const [allEmployees] = useAllEmployees();
 
   const axiosPublic = useAxiosPublic();
 
   const { signUser, signInWithGoogle } = useContext(AuthContext);
+
+  const isFired = (email) => {
+    const employee = allEmployees.find((emp) => emp.email === email);
+    return employee && employee.isFired;
+  };
 
   const handleLogin = (e) => {
     e.preventDefault();
     const form = e.target;
     const email = form.email.value;
     const password = form.password.value;
+    const fired = isFired(email);
+
+    if (fired) {
+      toast.error("You are Fired!! Please Contact Support!!");
+      return;
+    }
 
     signUser(email, password)
       .then((userCredential) => {
