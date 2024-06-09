@@ -53,6 +53,12 @@ const Login = () => {
   const handleGoogleSignIn = () => {
     signInWithGoogle().then((res) => {
       console.log(res.user);
+      const user = res.user;
+      const fired = isFired(user.email);
+      if (fired) {
+        toast.error("You are Fired!! Please Contact Support!!");
+        return;
+      }
       const userInfo = {
         email: res.user?.email,
         name: res.user?.displayName,
