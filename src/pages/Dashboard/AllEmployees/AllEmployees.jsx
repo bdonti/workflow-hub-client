@@ -1,9 +1,65 @@
 import { Button, Spinner, Table } from "flowbite-react";
 import useAllEmployees from "../../../hooks/useAllEmployees";
+import Swal from "sweetalert2";
+import useAxiosPublic from "../../../hooks/useAxiosPublic";
 
 const AllEmployees = () => {
   const [allEmployees, refetch, loading] = useAllEmployees();
+  const axiosPublic = useAxiosPublic();
   console.log(allEmployees);
+
+  const handleFire = (employee) => {
+    Swal.fire({
+      title: `Are you sure you want to fire ${employee.name}?`,
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        axiosPublic
+          .put(`http://localhost:5000/users/fire/${employee._id}`, {
+            isFired: true,
+          })
+          .then((res) => {
+            console.log("Response from server:", res.data);
+            if (res.data.modifiedCount > 0) {
+              // refetch to update the UI
+              refetch();
+              Swal.fire({
+                position: "top-end",
+                icon: "success",
+                title: `${employee.name} has been fired!!!`,
+                showConfirmButton: false,
+                timer: 1500,
+              });
+            } else {
+              // Handle the case where deletion was not successful
+              Swal.fire({
+                position: "top-end",
+                icon: "error",
+                title: `Failed to fire ${employee.name}`,
+                showConfirmButton: false,
+                timer: 1500,
+              });
+            }
+          })
+          .catch((error) => {
+            // Log the error and show an error message
+            console.error("Error deleting item:", error);
+            Swal.fire({
+              position: "top-end",
+              icon: "error",
+              title: "An error occurred while deleting the item",
+              showConfirmButton: false,
+              timer: 1500,
+            });
+          });
+      }
+    });
+  };
 
   return (
     <div>
@@ -60,9 +116,17 @@ const AllEmployees = () => {
                     )}
                   </Table.Cell>
                   <Table.Cell className="text-[#353B6E]">
-                    <Button color="failure" pill>
-                      Fire
-                    </Button>
+                    {employee.isFired === true ? (
+                      <h2 className="font-bold text-red-700">Fired</h2>
+                    ) : (
+                      <Button
+                        onClick={() => handleFire(employee)}
+                        color="failure"
+                        pill
+                      >
+                        Fire
+                      </Button>
+                    )}
                   </Table.Cell>
                 </Table.Row>
               ))}
