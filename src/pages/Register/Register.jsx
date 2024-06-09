@@ -163,6 +163,9 @@ const Register = () => {
               <Dropdown.Item onClick={() => handleRoleSelect("HR")}>
                 HR
               </Dropdown.Item>
+              {/* <Dropdown.Item onClick={() => handleRoleSelect("Admin")}>
+                Admin
+              </Dropdown.Item> */}
             </Dropdown>
             <input
               type="hidden"

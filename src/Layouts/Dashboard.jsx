@@ -8,10 +8,12 @@ import useHR from "../hooks/useHR";
 import { PiUsersThreeFill } from "react-icons/pi";
 import { TfiMoney } from "react-icons/tfi";
 import { GiProgression } from "react-icons/gi";
+import useAdmin from "../hooks/useAdmin";
 
 const Dashboard = () => {
   const [isEmployee] = useEmployee();
   const [isHR] = useHR();
+  const [isAdmin] = useAdmin();
   return (
     <div>
       <div className="flex gap-8">
@@ -86,6 +88,21 @@ const Dashboard = () => {
                     >
                       <GiProgression className="mr-2" />
                       Employee Progress
+                    </Link>
+                  </List.Item>
+                </List>
+              </div>
+            )}
+            {isAdmin && (
+              <div className="space-y-4 mt-5">
+                <List className="text-white text-xl list-none">
+                  <List.Item>
+                    <Link
+                      className="flex justify-center items-center gap-2"
+                      to="/"
+                    >
+                      <FaHome className="mr-2"></FaHome>
+                      Admin Home
                     </Link>
                   </List.Item>
                 </List>
