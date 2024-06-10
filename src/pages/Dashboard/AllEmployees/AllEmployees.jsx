@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { Button, Card, Spinner, Table, TextInput } from "flowbite-react";
 import useAllEmployees from "../../../hooks/useAllEmployees";
 import Swal from "sweetalert2";

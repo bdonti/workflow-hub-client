@@ -26,7 +26,7 @@ const Dashboard = () => {
                   <List.Item>
                     <Link
                       className="flex justify-center items-center gap-2"
-                      to="/"
+                      to="/dashboard"
                     >
                       <FaHome className="mr-2"></FaHome>
                       Employee Home
@@ -63,7 +63,7 @@ const Dashboard = () => {
                   <List.Item>
                     <Link
                       className="flex justify-center items-center gap-2"
-                      to="/"
+                      to="/dashboard"
                     >
                       <FaHome className="mr-2"></FaHome>
                       HR Home
@@ -100,7 +100,7 @@ const Dashboard = () => {
                   <List.Item>
                     <Link
                       className="flex justify-center items-center gap-2"
-                      to="/"
+                      to="/dashboard/"
                     >
                       <FaHome className="mr-2"></FaHome>
                       Admin Home
