@@ -1,5 +1,12 @@
 import { useState } from "react";
-import { Button, Card, Spinner, Table, TextInput } from "flowbite-react";
+import {
+  Button,
+  Card,
+  Spinner,
+  Table,
+  TableCell,
+  TextInput,
+} from "flowbite-react";
 import useAllEmployees from "../../../hooks/useAllEmployees";
 import Swal from "sweetalert2";
 import useAxiosPublic from "../../../hooks/useAxiosPublic";
@@ -134,7 +141,7 @@ const AllEmployees = () => {
         ) : (
           <>
             {viewMode === "table" ? (
-              <div>
+              <div className="overflow-x-auto">
                 <Table className="min-w-full divide-y divide-gray-200">
                   <Table.Head>
                     <Table.HeadCell>#</Table.HeadCell>
@@ -150,18 +157,18 @@ const AllEmployees = () => {
                         key={employee._id}
                         className="bg-white dark:border-gray-700 dark:bg-gray-800"
                       >
-                        <Table.Cell className="text-[#353B6E]">
+                        <TableCell className="text-[#353B6E]">
                           {idx + 1}
-                        </Table.Cell>
-                        <Table.Cell className="text-[#353B6E]">
+                        </TableCell>
+                        <TableCell className="text-[#353B6E]">
                           {employee.name}
-                        </Table.Cell>
-                        <Table.Cell className="text-[#353B6E]">
+                        </TableCell>
+                        <TableCell className="text-[#353B6E]">
                           {employee?.designation
                             ? employee.designation
                             : "Not available"}
-                        </Table.Cell>
-                        <Table.Cell className="text-[#353B6E]">
+                        </TableCell>
+                        <TableCell className="text-[#353B6E]">
                           <form
                             onSubmit={(e) =>
                               handleSalaryChange(e, employee._id)
@@ -180,8 +187,8 @@ const AllEmployees = () => {
                               Adjust Salary
                             </Button>
                           </form>
-                        </Table.Cell>
-                        <Table.Cell className="text-[#353B6E]">
+                        </TableCell>
+                        <TableCell className="text-[#353B6E]">
                           {employee?.role === "hr" ? (
                             <Button color="success" size="xs" disabled>
                               Already HR
@@ -195,8 +202,8 @@ const AllEmployees = () => {
                               Make HR
                             </Button>
                           )}
-                        </Table.Cell>
-                        <Table.Cell className="text-[#353B6E]">
+                        </TableCell>
+                        <TableCell className="text-[#353B6E]">
                           {employee.isFired === true ? (
                             <h2 className="font-bold text-red-700">Fired</h2>
                           ) : (
@@ -208,7 +215,7 @@ const AllEmployees = () => {
                               Fire
                             </Button>
                           )}
-                        </Table.Cell>
+                        </TableCell>
                       </Table.Row>
                     ))}
                   </Table.Body>

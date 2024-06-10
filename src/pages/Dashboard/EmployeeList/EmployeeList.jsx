@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Button, Modal, Table } from "flowbite-react";
+import { Button, Modal, Table, TableCell } from "flowbite-react";
 import useEmployees from "../../../hooks/useEmployees";
 import { RxCross2 } from "react-icons/rx";
 import { MdVerified } from "react-icons/md";
@@ -70,14 +70,14 @@ const EmployeeList = () => {
                   key={employee._id}
                   className="bg-white dark:border-gray-700 dark:bg-gray-800"
                 >
-                  <Table.Cell className="text-[#353B6E]">{idx + 1}</Table.Cell>
-                  <Table.Cell className="text-[#353B6E]">
+                  <TableCell className="text-[#353B6E]">{idx + 1}</TableCell>
+                  <TableCell className="text-[#353B6E]">
                     {employee.name}
-                  </Table.Cell>
-                  <Table.Cell className="text-[#353B6E]">
+                  </TableCell>
+                  <TableCell className="text-[#353B6E]">
                     {employee.email}
-                  </Table.Cell>
-                  <Table.Cell className="text-[#353B6E]">
+                  </TableCell>
+                  <TableCell className="text-[#353B6E]">
                     {employee?.isVerified === true ? (
                       <MdVerified className="text-green-400 text-2xl" />
                     ) : (
@@ -90,16 +90,16 @@ const EmployeeList = () => {
                         </div>
                       </>
                     )}
-                  </Table.Cell>
-                  <Table.Cell className="text-[#353B6E]">
+                  </TableCell>
+                  <TableCell className="text-[#353B6E]">
                     {employee.accountNumber
                       ? employee.accountNumber
                       : "Not Found"}
-                  </Table.Cell>
-                  <Table.Cell className="text-[#353B6E]">
+                  </TableCell>
+                  <TableCell className="text-[#353B6E]">
                     {employee?.salary ? employee.salary : "Not Found"}
-                  </Table.Cell>
-                  <Table.Cell className="text-[#353B6E]">
+                  </TableCell>
+                  <TableCell className="text-[#353B6E]">
                     {employee.isVerified === true ? (
                       <>
                         <Button onClick={() => handlePayModal(idx)}>Pay</Button>
@@ -128,12 +128,12 @@ const EmployeeList = () => {
                     ) : (
                       <Button disabled>Pay</Button>
                     )}
-                  </Table.Cell>
-                  <Table.Cell className="text-[#353B6E]">
+                  </TableCell>
+                  <TableCell className="text-[#353B6E]">
                     <Link to={`/dashboard/details/${employee.email}`}>
                       <Button>Details</Button>
                     </Link>
-                  </Table.Cell>
+                  </TableCell>
                 </Table.Row>
               ))}
             </Table.Body>

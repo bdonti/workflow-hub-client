@@ -82,31 +82,39 @@ const EmployeeProgress = () => {
             size="xl"
           />
         ) : (
-          <Table className="min-w-full divide-y divide-gray-200">
-            <TableHead>
-              <Table.HeadCell>#</Table.HeadCell>
-              <Table.HeadCell>Submitted Work</Table.HeadCell>
-              <Table.HeadCell>Work Type</Table.HeadCell>
-              <Table.HeadCell>Work Hour</Table.HeadCell>
-              <Table.HeadCell>Date Submitted</Table.HeadCell>
-            </TableHead>
-            <TableBody className="bg-white divide-y divide-gray-200">
-              {tasks.map((task, idx) => (
-                <TableRow
-                  key={task._id}
-                  className="bg-white dark:border-gray-700 dark:bg-gray-800"
-                >
-                  <TableCell className="text-[#353B6E]">{idx + 1}</TableCell>
-                  <TableCell className="text-[#353B6E]">{task.name}</TableCell>
-                  <TableCell className="text-[#353B6E]">{task.task}</TableCell>
-                  <TableCell className="text-[#353B6E]">
-                    {task.workHours} hours
-                  </TableCell>
-                  <TableCell className="text-[#353B6E]">{task.date}</TableCell>
-                </TableRow>
-              ))}
-            </TableBody>
-          </Table>
+          <div className="overflow-x-auto">
+            <Table className="min-w-full divide-y divide-gray-200">
+              <TableHead>
+                <Table.HeadCell>#</Table.HeadCell>
+                <Table.HeadCell>Submitted Work</Table.HeadCell>
+                <Table.HeadCell>Work Type</Table.HeadCell>
+                <Table.HeadCell>Work Hour</Table.HeadCell>
+                <Table.HeadCell>Date Submitted</Table.HeadCell>
+              </TableHead>
+              <TableBody className="bg-white divide-y divide-gray-200">
+                {tasks.map((task, idx) => (
+                  <TableRow
+                    key={task._id}
+                    className="bg-white dark:border-gray-700 dark:bg-gray-800"
+                  >
+                    <TableCell className="text-[#353B6E]">{idx + 1}</TableCell>
+                    <TableCell className="text-[#353B6E]">
+                      {task.name}
+                    </TableCell>
+                    <TableCell className="text-[#353B6E]">
+                      {task.task}
+                    </TableCell>
+                    <TableCell className="text-[#353B6E]">
+                      {task.workHours} hours
+                    </TableCell>
+                    <TableCell className="text-[#353B6E]">
+                      {task.date}
+                    </TableCell>
+                  </TableRow>
+                ))}
+              </TableBody>
+            </Table>
+          </div>
         )}
       </div>
     </div>
