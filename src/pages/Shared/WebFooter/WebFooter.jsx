@@ -1,5 +1,6 @@
 import { Footer } from "flowbite-react";
 import footerBg from "../../../assets/footer-wave.png";
+import logo from "../../../assets/logo.png";
 
 const WebFooter = () => {
   return (
@@ -11,12 +12,10 @@ const WebFooter = () => {
         <Footer container className="bg-transparent">
           <div className="w-full text-center">
             <div className="w-full justify-between sm:flex sm:items-center sm:justify-between">
-              <Footer.Brand
-                href="https://flowbite.com"
-                src="https://flowbite.com/docs/images/logo.svg"
-                alt="Flowbite Logo"
-                name="Flowbite"
-              />
+              <div className="flex justify-center items-center gap-6">
+                <img className="mr-3 h-16" src={logo} alt="" />
+                <p className="text-white text-3xl font-bold">WorkFlow Hub</p>
+              </div>
               <Footer.LinkGroup className="text-white">
                 <Footer.Link>About</Footer.Link>
                 <Footer.Link>Privacy Policy</Footer.Link>
@@ -27,7 +26,7 @@ const WebFooter = () => {
             <Footer.Divider className="border-gray-300" />
             <Footer.Copyright
               className="text-white font-bold"
-              by="Flowbite™"
+              by="WorkFlowHub™ All Rights Reserved"
               year={2024}
             />
           </div>
