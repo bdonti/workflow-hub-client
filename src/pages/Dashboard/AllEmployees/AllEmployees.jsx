@@ -1,17 +1,19 @@
-import { Button, Spinner, Table, TextInput } from "flowbite-react";
+import React, { useState } from "react";
+import { Button, Card, Spinner, Table, TextInput } from "flowbite-react";
 import useAllEmployees from "../../../hooks/useAllEmployees";
 import Swal from "sweetalert2";
 import useAxiosPublic from "../../../hooks/useAxiosPublic";
 import toast from "react-hot-toast";
+import { CiViewTable } from "react-icons/ci";
+import { IoCardOutline } from "react-icons/io5";
 
 const AllEmployees = () => {
   const [allEmployees, refetch, loading] = useAllEmployees();
   const axiosPublic = useAxiosPublic();
-  console.log(allEmployees);
+  const [viewMode, setViewMode] = useState("table");
 
   const handleSalaryChange = (e, employeeId) => {
     e.preventDefault();
-    console.log(employeeId);
     const form = e.target;
     const newSalary = form.newSalary.value;
 
@@ -62,9 +64,7 @@ const AllEmployees = () => {
             isFired: true,
           })
           .then((res) => {
-            console.log("Response from server:", res.data);
             if (res.data.modifiedCount > 0) {
-              // refetch to update the UI
               refetch();
               Swal.fire({
                 position: "top-end",
@@ -74,7 +74,6 @@ const AllEmployees = () => {
                 timer: 1500,
               });
             } else {
-              // Handle the case where deletion was not successful
               Swal.fire({
                 position: "top-end",
                 icon: "error",
@@ -99,6 +98,14 @@ const AllEmployees = () => {
     });
   };
 
+  const showTableView = () => {
+    setViewMode("table");
+  };
+
+  const showCardView = () => {
+    setViewMode("card");
+  };
+
   return (
     <div>
       <div className="mt-10 mx-5 lg:mx-0">
@@ -109,6 +116,14 @@ const AllEmployees = () => {
           Handle Your Employees
         </h3>
       </div>
+      <div className="flex justify-center items-center gap-8 mb-5">
+        <Button onClick={showTableView} outline>
+          <CiViewTable />
+        </Button>
+        <Button onClick={showCardView} outline>
+          <IoCardOutline />
+        </Button>
+      </div>
       <div>
         {loading ? (
           <Spinner
@@ -117,80 +132,151 @@ const AllEmployees = () => {
             size="xl"
           />
         ) : (
-          <Table className="min-w-full divide-y divide-gray-200">
-            <Table.Head>
-              <Table.HeadCell>#</Table.HeadCell>
-              <Table.HeadCell>Name</Table.HeadCell>
-              <Table.HeadCell>Designation</Table.HeadCell>
-              <Table.HeadCell>Increase Salary</Table.HeadCell>
-              <Table.HeadCell>Make HR</Table.HeadCell>
-              <Table.HeadCell>Fire</Table.HeadCell>
-            </Table.Head>
-            <Table.Body className="bg-white divide-y divide-gray-200">
-              {allEmployees.map((employee, idx) => (
-                <Table.Row
-                  key={employee._id}
-                  className="bg-white dark:border-gray-700 dark:bg-gray-800"
-                >
-                  <Table.Cell className="text-[#353B6E]">{idx + 1}</Table.Cell>
-                  <Table.Cell className="text-[#353B6E]">
-                    {employee.name}
-                  </Table.Cell>
-                  <Table.Cell className="text-[#353B6E]">
-                    {employee?.designation
-                      ? employee.designation
-                      : "Not available"}
-                  </Table.Cell>
-                  <Table.Cell className="text-[#353B6E]">
-                    <form
-                      onSubmit={(e) => handleSalaryChange(e, employee._id)}
-                      className="space-y-4"
-                    >
-                      <TextInput
-                        type="number"
-                        name="newSalary"
-                        defaultValue={employee.salary}
-                        placeholder="Salary"
-                        className="w-1/4"
-                        required
-                      />
-                      <Button type="submit" color="dark" pill>
-                        Adjust Salary
-                      </Button>
-                    </form>
-                  </Table.Cell>
-                  <Table.Cell className="text-[#353B6E]">
-                    {employee?.role === "hr" ? (
-                      <Button color="success" size="xs" disabled>
-                        Already HR
-                      </Button>
-                    ) : (
-                      <Button
-                        onClick={() => handleMakeHR(employee)}
-                        color="success"
-                        size="xs"
+          <>
+            {viewMode === "table" ? (
+              <div>
+                <Table className="min-w-full divide-y divide-gray-200">
+                  <Table.Head>
+                    <Table.HeadCell>#</Table.HeadCell>
+                    <Table.HeadCell>Name</Table.HeadCell>
+                    <Table.HeadCell>Designation</Table.HeadCell>
+                    <Table.HeadCell>Increase Salary</Table.HeadCell>
+                    <Table.HeadCell>Make HR</Table.HeadCell>
+                    <Table.HeadCell>Fire</Table.HeadCell>
+                  </Table.Head>
+                  <Table.Body className="bg-white divide-y divide-gray-200">
+                    {allEmployees.map((employee, idx) => (
+                      <Table.Row
+                        key={employee._id}
+                        className="bg-white dark:border-gray-700 dark:bg-gray-800"
                       >
-                        Make HR
-                      </Button>
-                    )}
-                  </Table.Cell>
-                  <Table.Cell className="text-[#353B6E]">
-                    {employee.isFired === true ? (
-                      <h2 className="font-bold text-red-700">Fired</h2>
-                    ) : (
-                      <Button
-                        onClick={() => handleFire(employee)}
-                        color="failure"
-                        pill
-                      >
-                        Fire
-                      </Button>
-                    )}
-                  </Table.Cell>
-                </Table.Row>
-              ))}
-            </Table.Body>
-          </Table>
+                        <Table.Cell className="text-[#353B6E]">
+                          {idx + 1}
+                        </Table.Cell>
+                        <Table.Cell className="text-[#353B6E]">
+                          {employee.name}
+                        </Table.Cell>
+                        <Table.Cell className="text-[#353B6E]">
+                          {employee?.designation
+                            ? employee.designation
+                            : "Not available"}
+                        </Table.Cell>
+                        <Table.Cell className="text-[#353B6E]">
+                          <form
+                            onSubmit={(e) =>
+                              handleSalaryChange(e, employee._id)
+                            }
+                            className="space-y-4"
+                          >
+                            <TextInput
+                              type="number"
+                              name="newSalary"
+                              defaultValue={employee.salary}
+                              placeholder="Salary"
+                              className="w-1/4"
+                              required
+                            />
+                            <Button type="submit" color="dark" pill>
+                              Adjust Salary
+                            </Button>
+                          </form>
+                        </Table.Cell>
+                        <Table.Cell className="text-[#353B6E]">
+                          {employee?.role === "hr" ? (
+                            <Button color="success" size="xs" disabled>
+                              Already HR
+                            </Button>
+                          ) : (
+                            <Button
+                              onClick={() => handleMakeHR(employee)}
+                              color="success"
+                              size="xs"
+                            >
+                              Make HR
+                            </Button>
+                          )}
+                        </Table.Cell>
+                        <Table.Cell className="text-[#353B6E]">
+                          {employee.isFired === true ? (
+                            <h2 className="font-bold text-red-700">Fired</h2>
+                          ) : (
+                            <Button
+                              onClick={() => handleFire(employee)}
+                              color="failure"
+                              pill
+                            >
+                              Fire
+                            </Button>
+                          )}
+                        </Table.Cell>
+                      </Table.Row>
+                    ))}
+                  </Table.Body>
+                </Table>
+              </div>
+            ) : (
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+                {allEmployees.map((employee) => (
+                  <Card key={employee._id} className="max-w-sm">
+                    <div className="flex flex-col items-center pb-10">
+                      <h5 className="mb-1 text-xl font-medium text-gray-900 dark:text-white">
+                        {employee.name}
+                      </h5>
+                      <span className="text-sm text-gray-500 dark:text-gray-400">
+                        {employee?.designation
+                          ? employee.designation
+                          : "Designation Not available"}
+                      </span>
+                      <div className="my-2">
+                        <form
+                          onSubmit={(e) => handleSalaryChange(e, employee._id)}
+                          className="space-y-4"
+                        >
+                          <TextInput
+                            type="number"
+                            name="newSalary"
+                            defaultValue={employee.salary}
+                            placeholder="Salary"
+                            className="w-full"
+                            required
+                          />
+                          <Button type="submit" color="dark" pill>
+                            Adjust Salary
+                          </Button>
+                        </form>
+                      </div>
+                      <div className="mt-4 flex space-x-3 lg:mt-6">
+                        {employee?.role === "hr" ? (
+                          <Button color="success" pill disabled>
+                            Already HR
+                          </Button>
+                        ) : (
+                          <Button
+                            onClick={() => handleMakeHR(employee)}
+                            color="success"
+                            pill
+                          >
+                            Make HR
+                          </Button>
+                        )}
+                        {employee.isFired === true ? (
+                          <h2 className="font-bold text-red-700">Fired</h2>
+                        ) : (
+                          <Button
+                            onClick={() => handleFire(employee)}
+                            color="failure"
+                            pill
+                          >
+                            Fire
+                          </Button>
+                        )}
+                      </div>
+                    </div>
+                  </Card>
+                ))}
+              </div>
+            )}
+          </>
         )}
       </div>
     </div>
