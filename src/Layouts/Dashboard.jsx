@@ -9,6 +9,7 @@ import { PiUsersThreeFill } from "react-icons/pi";
 import { TfiMoney } from "react-icons/tfi";
 import { GiProgression } from "react-icons/gi";
 import useAdmin from "../hooks/useAdmin";
+import { VscFeedback } from "react-icons/vsc";
 
 const Dashboard = () => {
   const [isEmployee] = useEmployee();
@@ -114,6 +115,16 @@ const Dashboard = () => {
                     >
                       <FaUsers className="mr-2" />
                       All Employees
+                    </Link>
+                  </List.Item>
+                </List>
+                <List className="text-white text-xl list-none">
+                  <List.Item>
+                    <Link
+                      className="flex justify-center items-center gap-2"
+                      to="/dashboard/opinions"
+                    >
+                      <VscFeedback className="mr-2" /> Visitor Feedbacks
                     </Link>
                   </List.Item>
                 </List>

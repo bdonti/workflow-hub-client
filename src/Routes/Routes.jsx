@@ -12,6 +12,7 @@ import EmployeeProgress from "../pages/Dashboard/EmployeeProgress/EmployeeProgre
 import PrivateRoute from "../providers/PrivateRoute";
 import AllEmployees from "../pages/Dashboard/AllEmployees/AllEmployees";
 import ContactUs from "../pages/ContactUs/ContactUs";
+import VisitorOpinions from "../pages/Dashboard/VisitorOpinions/VisitorOpinions";
 
 const router = createBrowserRouter([
   {
@@ -69,6 +70,10 @@ const router = createBrowserRouter([
       {
         path: "all-employee-list",
         element: <AllEmployees></AllEmployees>,
+      },
+      {
+        path: "opinions",
+        element: <VisitorOpinions></VisitorOpinions>,
       },
     ],
   },
