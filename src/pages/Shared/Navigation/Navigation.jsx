@@ -44,7 +44,7 @@ const Navigation = () => {
           <Link to="/dashboard">
             <Navbar.Link>Dashboard</Navbar.Link>
           </Link>
-          <Link to="/">
+          <Link to="/contact-us">
             <Navbar.Link>Contact Us</Navbar.Link>
           </Link>
         </Navbar.Collapse>

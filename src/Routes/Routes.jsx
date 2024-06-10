@@ -11,6 +11,7 @@ import EmployeeDetails from "../pages/Dashboard/EmployeeDetails/EmployeeDetails"
 import EmployeeProgress from "../pages/Dashboard/EmployeeProgress/EmployeeProgress";
 import PrivateRoute from "../providers/PrivateRoute";
 import AllEmployees from "../pages/Dashboard/AllEmployees/AllEmployees";
+import ContactUs from "../pages/ContactUs/ContactUs";
 
 const router = createBrowserRouter([
   {
@@ -28,6 +29,10 @@ const router = createBrowserRouter([
       {
         path: "/register",
         element: <Register></Register>,
+      },
+      {
+        path: "/contact-us",
+        element: <ContactUs></ContactUs>,
       },
     ],
   },
