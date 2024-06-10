@@ -44,7 +44,7 @@ const DashboardHome = () => {
                   </h3>
                   <p className="text-xl font-semibold">{allEmployees.length}</p>
                 </div>
-                <div className="flex flex-col items-center">
+                <div className="flex flex-col items-center mt-8 lg:mt-0">
                   <VscFeedback className="text-2xl lg:text-3xl" />
                   <h3 className="text-2xl lg:text-3xl text-[#353B6E] font-bold mb-10 mt-10">
                     Total Feedbacks
@@ -66,7 +66,7 @@ const DashboardHome = () => {
                   </h3>
                   <p className="text-xl font-semibold">{tasks.length}</p>
                 </div>
-                <div className="flex flex-col items-center">
+                <div className="flex flex-col items-center mt-8 lg:mt-0">
                   <FaHandHoldingDollar className="text-2xl lg:text-3xl" />
                   <h3 className="text-2xl lg:text-3xl text-[#353B6E] font-bold mb-10 mt-10">
                     Total Payments By HR
@@ -88,7 +88,7 @@ const DashboardHome = () => {
                   </h3>
                   <p className="text-xl font-semibold">{task.length}</p>
                 </div>
-                <div className="flex flex-col items-center">
+                <div className="flex flex-col items-center mt-8 lg:mt-0">
                   <FaHandHoldingDollar className="text-2xl lg:text-3xl" />
                   <h3 className="text-2xl lg:text-3xl text-[#353B6E] font-bold mb-10 mt-10">
                     Total Payments Received
