@@ -2,6 +2,7 @@ import { useContext } from "react";
 import { AuthContext } from "../providers/AuthProvider";
 import useEmployee from "../hooks/useEmployee";
 import { Navigate, useLocation } from "react-router-dom";
+import { Spinner } from "flowbite-react";
 
 const EmployeeRoute = ({ children }) => {
   const { user, loading } = useContext(AuthContext);
@@ -9,7 +10,13 @@ const EmployeeRoute = ({ children }) => {
   const location = useLocation();
 
   if (loading || isEmployeeLoading) {
-    return <progress className="progress w-56"></progress>;
+    return (
+      <Spinner
+        className="flex justify-center items-center"
+        aria-label="Extra large spinner example"
+        size="xl"
+      />
+    );
   }
 
   if (user && isEmployee) {

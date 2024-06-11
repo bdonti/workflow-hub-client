@@ -108,7 +108,9 @@ const router = createBrowserRouter([
           </HrRoute>
         ),
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/payments/${params.email}`),
+          fetch(
+            `https://workflowhub-dbserver.vercel.app/payments/${params.email}`
+          ),
       },
       {
         path: "progress",

@@ -16,7 +16,7 @@ const EmployeeDetails = () => {
   const details = useLoaderData();
   const { email } = useParams();
   const [employees, ,] = useEmployees();
-  console.log(employees);
+  // console.log(employees);
   const employee = employees.find((emp) => emp.email === email);
 
   const monthNames = {

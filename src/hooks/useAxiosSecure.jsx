@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../providers/AuthProvider";
 
 const axiosSecure = axios.create({
-  baseURL: "http://localhost:5000",
+  baseURL: "https://workflowhub-dbserver.vercel.app",
 });
 const useAxiosSecure = () => {
   const navigate = useNavigate();
@@ -34,7 +34,7 @@ const useAxiosSecure = () => {
     },
     function (error) {
       const status = error.response.status;
-      console.log("Error in interceptor: ", status);
+      //   console.log("Error in interceptor: ", status);
       if (status === 401 || status === 403) {
         logOut()
           .then(() => {

@@ -16,7 +16,7 @@ const ContactUs = () => {
   const axiosPublic = useAxiosPublic();
 
   const onSubmit = async (data) => {
-    console.log(data);
+    // console.log(data);
 
     const contactInfo = {
       email: data.email,

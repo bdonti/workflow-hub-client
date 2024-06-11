@@ -11,7 +11,7 @@ const PaymentHistory = () => {
   const fetchPayments = async (page = 0) => {
     const offset = page * perPage;
     const res = await fetch(
-      `http://localhost:5000/payments/?email=${user.email}&limit=${perPage}&offset=${offset}`
+      `https://workflowhub-dbserver.vercel.app/payments/?email=${user.email}&limit=${perPage}&offset=${offset}`
     );
     const data = await res.json();
 
