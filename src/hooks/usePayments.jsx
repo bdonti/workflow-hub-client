@@ -1,8 +1,8 @@
 import { useQuery } from "@tanstack/react-query";
-import useAxiosPublic from "./useAxiosPublic";
+import useAxiosSecure from "./useAxiosSecure";
 
 const usePayments = () => {
-  const axiosPublic = useAxiosPublic();
+  const axiosSecure = useAxiosSecure();
   const {
     refetch,
     data: payments = [],
@@ -10,7 +10,7 @@ const usePayments = () => {
   } = useQuery({
     queryKey: ["payments"],
     queryFn: async () => {
-      const res = await axiosPublic.get("/allPayments");
+      const res = await axiosSecure.get("/allPayments");
       return res.data;
     },
   });

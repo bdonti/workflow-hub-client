@@ -4,15 +4,15 @@ import { useForm } from "react-hook-form";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { AuthContext } from "../../../providers/AuthProvider";
-import useAxiosPublic from "../../../hooks/useAxiosPublic";
 import toast from "react-hot-toast";
 import useTask from "../../../hooks/useTask";
+import useAxiosSecure from "../../../hooks/useAxiosSecure";
 
 const WorkSheet = () => {
   const [task, setTask] = useState("");
   const [tasks, refetch] = useTask();
   const [startDate, setStartDate] = useState(new Date());
-  const axiosPublic = useAxiosPublic();
+  const axiosSecure = useAxiosSecure();
   const { user } = useContext(AuthContext);
   const [taskError, setTaskError] = useState("");
   const {
@@ -42,7 +42,7 @@ const WorkSheet = () => {
       date: data.date,
     };
 
-    axiosPublic
+    axiosSecure
       .post("/tasks", taskInfo)
       .then((res) => {
         if (res.data.insertedId) {

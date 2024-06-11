@@ -9,14 +9,14 @@ import {
 } from "flowbite-react";
 import useAllEmployees from "../../../hooks/useAllEmployees";
 import Swal from "sweetalert2";
-import useAxiosPublic from "../../../hooks/useAxiosPublic";
 import toast from "react-hot-toast";
 import { CiViewTable } from "react-icons/ci";
 import { IoCardOutline } from "react-icons/io5";
+import useAxiosSecure from "../../../hooks/useAxiosSecure";
 
 const AllEmployees = () => {
   const [allEmployees, refetch, loading] = useAllEmployees();
-  const axiosPublic = useAxiosPublic();
+  const axiosSecure = useAxiosSecure();
   const [viewMode, setViewMode] = useState("table");
 
   const handleSalaryChange = (e, employeeId) => {
@@ -32,7 +32,7 @@ const AllEmployees = () => {
       return;
     }
 
-    axiosPublic
+    axiosSecure
       .put(`/users/adjust-salary/${employeeId}`, { newSalary })
       .then((res) => {
         if (res.data.modifiedCount > 0) {
@@ -45,7 +45,7 @@ const AllEmployees = () => {
   };
 
   const handleMakeHR = (employee) => {
-    axiosPublic.put(`/users/make-hr/${employee._id}`).then((res) => {
+    axiosSecure.put(`/users/make-hr/${employee._id}`).then((res) => {
       if (res.data.modifiedCount > 0) {
         refetch();
         toast.success(`${employee.name} has been promoted to HR!!!`);
@@ -66,8 +66,8 @@ const AllEmployees = () => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        axiosPublic
-          .put(`http://localhost:5000/users/fire/${employee._id}`, {
+        axiosSecure
+          .put(`/users/fire/${employee._id}`, {
             isFired: true,
           })
           .then((res) => {

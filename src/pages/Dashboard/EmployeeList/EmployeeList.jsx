@@ -3,13 +3,13 @@ import { Button, Modal, Table, TableCell } from "flowbite-react";
 import useEmployees from "../../../hooks/useEmployees";
 import { RxCross2 } from "react-icons/rx";
 import { MdVerified } from "react-icons/md";
-import useAxiosPublic from "../../../hooks/useAxiosPublic";
 import toast from "react-hot-toast";
 import { loadStripe } from "@stripe/stripe-js";
 import { Elements } from "@stripe/react-stripe-js";
 
 import Checkout from "./Checkout";
 import { Link } from "react-router-dom";
+import useAxiosSecure from "../../../hooks/useAxiosSecure";
 
 const EmployeeList = () => {
   const stripePromise = loadStripe(import.meta.env.VITE_PAYMENT_GATEWAY_PK);
@@ -17,10 +17,10 @@ const EmployeeList = () => {
   const [openModals, setOpenModals] = useState(
     Array(employees.length).fill(false)
   );
-  const axiosPublic = useAxiosPublic();
+  const axiosSecure = useAxiosSecure();
 
   const handleVerify = async (id) => {
-    const res = await axiosPublic.put(`/users/verify/${id}`);
+    const res = await axiosSecure.put(`/users/verify/${id}`);
     if (res.status === 200) {
       await refetch();
       toast.success("Successfully Verified");

@@ -1,8 +1,8 @@
 import { useQuery } from "@tanstack/react-query";
-import useAxiosPublic from "./useAxiosPublic";
+import useAxiosSecure from "./useAxiosSecure";
 
 const useTasks = (name, month) => {
-  const axiosPublic = useAxiosPublic();
+  const axiosSecure = useAxiosSecure();
   const {
     refetch,
     data: tasks = [],
@@ -17,7 +17,7 @@ const useTasks = (name, month) => {
       if (month) {
         params.append("month", month);
       }
-      const res = await axiosPublic.get(`/tasks/details?${params.toString()}`);
+      const res = await axiosSecure.get(`/tasks/details?${params.toString()}`);
       return res.data;
     },
   });

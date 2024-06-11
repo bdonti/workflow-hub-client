@@ -37,7 +37,7 @@ const Navigation = () => {
                 <Link to="/login">
                   <Button className="bg-[#0c0833]">Login</Button>
                 </Link>
-                <Link to="/register">
+                <Link to="/register" className="hidden md:block">
                   <Button gradientMonochrome="teal">Register Now</Button>
                 </Link>
               </div>

@@ -1,15 +1,15 @@
 import { useContext } from "react";
-import useAxiosPublic from "./useAxiosPublic";
 import { AuthContext } from "../providers/AuthProvider";
 import { useQuery } from "@tanstack/react-query";
+import useAxiosSecure from "./useAxiosSecure";
 
 const useTask = () => {
-  const axiosPublic = useAxiosPublic();
+  const axiosSecure = useAxiosSecure();
   const { user } = useContext(AuthContext);
   const { refetch, data: tasks = [] } = useQuery({
     queryKey: ["tasks", user?.email],
     queryFn: async () => {
-      const res = await axiosPublic.get(`/tasks?email=${user.email}`);
+      const res = await axiosSecure.get(`/tasks?email=${user.email}`);
       return res.data;
     },
   });

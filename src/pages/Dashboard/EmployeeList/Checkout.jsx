@@ -1,10 +1,10 @@
 import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import { useEffect, useRef, useState } from "react";
-import useAxiosPublic from "../../../hooks/useAxiosPublic";
 import { getMonth, getYear, setMonth, setYear } from "date-fns";
 import { Button, Label, TextInput } from "flowbite-react";
 import DatePicker from "react-datepicker";
 import toast from "react-hot-toast";
+import useAxiosSecure from "../../../hooks/useAxiosSecure";
 
 const Checkout = ({ salary, email, name, image, designation }) => {
   const [error, setError] = useState("");
@@ -14,7 +14,7 @@ const Checkout = ({ salary, email, name, image, designation }) => {
 
   const stripe = useStripe();
   const elements = useElements();
-  const axiosPublic = useAxiosPublic();
+  const axiosSecure = useAxiosSecure();
 
   const cardElementRef = useRef(null);
 
@@ -30,13 +30,13 @@ const Checkout = ({ salary, email, name, image, designation }) => {
 
   useEffect(() => {
     if (salary > 0) {
-      axiosPublic
+      axiosSecure
         .post("/create-payment-intent", { price: salary })
         .then((res) => {
           setClientSecret(res.data.clientSecret);
         });
     }
-  }, [axiosPublic, salary]);
+  }, [axiosSecure, salary]);
 
   const handleSubmitPayment = async (event) => {
     event.preventDefault();
@@ -95,7 +95,7 @@ const Checkout = ({ salary, email, name, image, designation }) => {
           transactionId: paymentIntent.id,
         };
 
-        axiosPublic
+        axiosSecure
           .post("/payments", payment)
           .then((res) => {
             if (res.data?.paymentResult?.insertedId) {

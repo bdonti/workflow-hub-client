@@ -1,8 +1,8 @@
 import { useQuery } from "@tanstack/react-query";
-import useAxiosPublic from "./useAxiosPublic";
+import useAxiosSecure from "./useAxiosSecure";
 
 const useOpinions = () => {
-  const axiosPublic = useAxiosPublic();
+  const axiosSecure = useAxiosSecure();
   const {
     refetch,
     data: opinions = [],
@@ -10,7 +10,7 @@ const useOpinions = () => {
   } = useQuery({
     queryKey: ["opinions"],
     queryFn: async () => {
-      const res = await axiosPublic.get("/opinions");
+      const res = await axiosSecure.get("/opinions");
       return res.data;
     },
   });

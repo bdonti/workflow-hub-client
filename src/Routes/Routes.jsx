@@ -9,11 +9,17 @@ import EmployeeList from "../pages/Dashboard/EmployeeList/EmployeeList";
 import PaymentHistory from "../pages/Dashboard/PaymentHistory/PaymentHistory";
 import EmployeeDetails from "../pages/Dashboard/EmployeeDetails/EmployeeDetails";
 import EmployeeProgress from "../pages/Dashboard/EmployeeProgress/EmployeeProgress";
-import PrivateRoute from "../providers/PrivateRoute";
 import AllEmployees from "../pages/Dashboard/AllEmployees/AllEmployees";
 import ContactUs from "../pages/ContactUs/ContactUs";
 import VisitorOpinions from "../pages/Dashboard/VisitorOpinions/VisitorOpinions";
 import DashboardHome from "../pages/Dashboard/DashboardHome/DashboardHome";
+import AdminRoute from "./AdminRoute";
+import PrivateRoute from "./PrivateRoute";
+import AdminHome from "../pages/Dashboard/AdminHome.jsx/AdminHome";
+import EmployeeHome from "../pages/Dashboard/EmployeeHome/EmployeeHome";
+import HrHome from "../pages/Dashboard/HrHome/HrHome";
+import HrRoute from "./HrRoute";
+import EmployeeRoute from "./EmployeeRoute";
 
 const router = createBrowserRouter([
   {
@@ -51,34 +57,86 @@ const router = createBrowserRouter([
         element: <DashboardHome></DashboardHome>,
       },
       {
+        path: "employeeHome",
+        element: (
+          <EmployeeRoute>
+            <EmployeeHome></EmployeeHome>
+          </EmployeeRoute>
+        ),
+      },
+      {
         path: "work-sheet",
-        element: <WorkSheet></WorkSheet>,
+        element: (
+          <EmployeeRoute>
+            <WorkSheet></WorkSheet>
+          </EmployeeRoute>
+        ),
       },
       {
         path: "payment-history",
-        element: <PaymentHistory></PaymentHistory>,
+        element: (
+          <EmployeeRoute>
+            <PaymentHistory></PaymentHistory>
+          </EmployeeRoute>
+        ),
+      },
+      {
+        path: "HRHome",
+        element: (
+          <HrRoute>
+            <HrHome></HrHome>
+          </HrRoute>
+        ),
       },
       {
         path: "employee-list",
-        element: <EmployeeList></EmployeeList>,
+        element: (
+          <HrRoute>
+            <EmployeeList></EmployeeList>
+          </HrRoute>
+        ),
       },
       {
         path: "details/:email",
-        element: <EmployeeDetails></EmployeeDetails>,
+        element: (
+          <HrRoute>
+            <EmployeeDetails></EmployeeDetails>
+          </HrRoute>
+        ),
         loader: ({ params }) =>
           fetch(`http://localhost:5000/payments/${params.email}`),
       },
       {
         path: "progress",
-        element: <EmployeeProgress></EmployeeProgress>,
+        element: (
+          <HrRoute>
+            <EmployeeProgress></EmployeeProgress>
+          </HrRoute>
+        ),
+      },
+      {
+        path: "adminHome",
+        element: (
+          <AdminRoute>
+            <AdminHome></AdminHome>
+          </AdminRoute>
+        ),
       },
       {
         path: "all-employee-list",
-        element: <AllEmployees></AllEmployees>,
+        element: (
+          <AdminRoute>
+            <AllEmployees></AllEmployees>
+          </AdminRoute>
+        ),
       },
       {
         path: "opinions",
-        element: <VisitorOpinions></VisitorOpinions>,
+        element: (
+          <AdminRoute>
+            <VisitorOpinions></VisitorOpinions>
+          </AdminRoute>
+        ),
       },
     ],
   },
