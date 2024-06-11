@@ -49,9 +49,11 @@ const Navigation = () => {
           <Link to="/">
             <Navbar.Link>Home</Navbar.Link>
           </Link>
-          <Link to="/dashboard">
-            <Navbar.Link>Dashboard</Navbar.Link>
-          </Link>
+          {user && (
+            <Link to="/dashboard">
+              <Navbar.Link>Dashboard</Navbar.Link>
+            </Link>
+          )}
           <Link to="/contact-us">
             <Navbar.Link>Contact Us</Navbar.Link>
           </Link>
