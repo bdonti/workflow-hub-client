@@ -34,6 +34,11 @@ const AuthProvider = ({ children }) => {
     return signInWithPopup(auth, googleProvider);
   };
 
+  const logOut = () => {
+    setLoading(true);
+    return signOut(auth);
+  };
+
   const updateUserProfile = (name, image) => {
     setLoading(true);
     return updateProfile(auth.currentUser, {
@@ -42,39 +47,24 @@ const AuthProvider = ({ children }) => {
     });
   };
 
-  const logOut = () => {
-    setLoading(true);
-    return signOut(auth).then(() => {
-      localStorage.removeItem("access-token");
-      localStorage.removeItem("email");
-      localStorage.removeItem("role");
-      setLoading(false);
-    });
-  };
-
   useEffect(() => {
-    const unSubscribe = onAuthStateChanged(auth, (currentUser) => {
+    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
-      // console.log(currentUser);
       if (currentUser) {
         const userInfo = { email: currentUser.email };
         axiosPublic.post("/jwt", userInfo).then((res) => {
           if (res.data.token) {
             localStorage.setItem("access-token", res.data.token);
-            localStorage.setItem("email", res.data.email);
-            localStorage.setItem("role", res.data.role);
-            setLoading(false);
-          } else {
-            localStorage.removeItem("access-token");
-            localStorage.removeItem("email");
-            localStorage.removeItem("role");
             setLoading(false);
           }
         });
+      } else {
+        localStorage.removeItem("access-token");
+        setLoading(false);
       }
     });
     return () => {
-      return unSubscribe();
+      return unsubscribe();
     };
   }, [axiosPublic]);
 
