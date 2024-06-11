@@ -16,7 +16,7 @@ const Testimonials = () => {
         <div className="space-y-4">
           <p className="text-sm text-[#FF78BA]">| Testimonials</p>
           <h3 className="text-2xl lg:text-4xl text-[#353B6E] font-bold mb-10">
-            What Client's are say about us
+            What Clients are saying about us
           </h3>
           <div className="h-56 sm:h-64 xl:h-80 2xl:h-96">
             <Carousel

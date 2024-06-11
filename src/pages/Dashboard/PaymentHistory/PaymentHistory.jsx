@@ -33,6 +33,21 @@ const PaymentHistory = () => {
 
   const totalPages = Math.ceil(data?.totalCount / perPage);
 
+  const monthNames = {
+    "01": "January",
+    "02": "February",
+    "03": "March",
+    "04": "April",
+    "05": "May",
+    "06": "June",
+    "07": "July",
+    "08": "August",
+    "09": "September",
+    10: "October",
+    11: "November",
+    12: "December",
+  };
+
   return (
     <div className="mt-10 mx-5 lg:mx-0">
       <div>
@@ -71,7 +86,7 @@ const PaymentHistory = () => {
                     {currentPage * perPage + idx + 1}
                   </td>
                   <td className="px-6 py-4">
-                    {payment.month} {payment.year}
+                    {monthNames[payment.month]} {payment.year}
                   </td>
                   <td className="px-6 py-4">{payment.transactionId}</td>
                 </tr>
