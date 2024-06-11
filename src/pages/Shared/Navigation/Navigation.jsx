@@ -1,4 +1,11 @@
-import { Button, Navbar } from "flowbite-react";
+import {
+  Avatar,
+  Button,
+  Dropdown,
+  DropdownDivider,
+  DropdownItem,
+  Navbar,
+} from "flowbite-react";
 import { useContext } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../../providers/AuthProvider";
@@ -26,11 +33,23 @@ const Navigation = () => {
         </Navbar.Brand>
         <div className="flex md:order-2 space-x-4">
           {user ? (
-            <>
-              <Button onClick={handleLogOut} className="bg-[#0c0833]">
-                Logout
-              </Button>
-            </>
+            <Dropdown
+              label={<Avatar alt="User settings" img={user.photoURL} rounded />}
+              arrowIcon={false}
+              inline
+            >
+              <Dropdown.Header>
+                <span className="block text-sm">{user?.displayName}</span>
+                <span className="block truncate text-sm font-medium">
+                  {user?.email}
+                </span>
+              </Dropdown.Header>
+              <Link to="/dashboard">
+                <DropdownItem>Dashboard</DropdownItem>
+              </Link>
+              <DropdownDivider />
+              <DropdownItem onClick={handleLogOut}>Sign out</DropdownItem>
+            </Dropdown>
           ) : (
             <>
               <div className="flex gap-8">
