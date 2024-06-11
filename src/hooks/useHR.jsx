@@ -1,11 +1,11 @@
 import { useContext } from "react";
 import { AuthContext } from "../providers/AuthProvider";
 import { useQuery } from "@tanstack/react-query";
-import useAxiosPublic from "./useAxiosPublic";
+import useAxiosSecure from "./useAxiosSecure";
 
 const useHR = () => {
   const { user, loading } = useContext(AuthContext);
-  const axiosSecure = useAxiosPublic();
+  const axiosSecure = useAxiosSecure();
   const { data: isHR, isPending: isHRLoading } = useQuery({
     queryKey: [user?.email, "isHR"],
     enabled: !loading,
