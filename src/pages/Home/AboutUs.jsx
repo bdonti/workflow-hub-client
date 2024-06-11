@@ -9,9 +9,11 @@ const AboutUs = () => {
             We are here to improve your business by keeping track of employees.
           </h3>
           <p className="text-[#666666]">
-            Lorem ipsum dolor amet consectetures adipiscing do eiusmod tempor
-            incididunt abore dolore magna ut enim ad minim veniam ut
-            exercitation.
+            We at WorkFlow Hub are hard at work to provide best possible
+            solution to the leaders around the country. We are trying best
+            environment for our employees while keeping them at productive at
+            every possible step of the way. They are light in providing you the
+            best solution.
           </p>
         </div>
         <div className="flex gap-6">

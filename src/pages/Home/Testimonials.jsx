@@ -41,10 +41,10 @@ const Testimonials = () => {
                 </div>
                 <div>
                   <p className="w-[364px] mx-auto my-4 text-[#787C8B] text-[22px]">
-                    HR Adviser responded quickly to questions and work with
-                    thanks for picking the most expert employee’s for our
-                    company. These guys are real best adviser &amp;&nbsp; helped
-                    so many times
+                    WorkFlow Hub has transformed our HR processes with their
+                    exceptional HR Management services. Their Leadership
+                    Training programs have also been instrumental in developing
+                    our management team. Highly recommended!
                   </p>
                 </div>
                 <div className="flex flex-col justify-center items-center">
@@ -69,10 +69,10 @@ const Testimonials = () => {
                 </div>
                 <div>
                   <p className="w-[364px] mx-auto my-4 text-[#787C8B] text-[22px]">
-                    HR Adviser responded quickly to questions and work with
-                    thanks for picking the most expert employee’s for our
-                    company. These guys are real best adviser &amp;&nbsp; helped
-                    so many times
+                    We were impressed by the Strategic Planning expertise
+                    offered by WorkFlow Hub. Their insights have enabled us to
+                    set clear goals and achieve sustainable growth. The Employee
+                    Training programs have also been a great asset to our team.
                   </p>
                 </div>
                 <div className="flex flex-col justify-center items-center">
@@ -99,10 +99,10 @@ const Testimonials = () => {
                 </div>
                 <div>
                   <p className="w-[364px] mx-auto my-4 text-[#787C8B] text-[22px]">
-                    HR Adviser responded quickly to questions and work with
-                    thanks for picking the most expert employee’s for our
-                    company. These guys are real best adviser &amp;&nbsp; helped
-                    so many times
+                    The HR Consulting services from WorkFlow Hub have been
+                    invaluable in addressing our organizational challenges.
+                    Their Compensation Consulting has ensured our salary
+                    structures are fair and competitive.
                   </p>
                 </div>
                 <div className="flex flex-col justify-center items-center">

@@ -27,8 +27,8 @@ const Specialities = () => {
                 Leadership Training
               </h5>
               <p className="font-normal text-[#787C8B]">
-                We analyse your websites structure, internal architecture &
-                other key elements Consectetur adipiscing.
+                Our Leadership Training programs are designed to cultivate the
+                skills and qualities necessary for effective leadership.
               </p>
             </Card>
             <div>
@@ -41,8 +41,10 @@ const Specialities = () => {
                 HR Management
               </h5>
               <p className="font-normal text-[#787C8B]">
-                We analyse your websites structure, internal architecture &
-                other key elements Consectetur adipiscing.
+                Our HR Management services streamline your human resources
+                processes, ensuring efficient and compliant handling of
+                recruitment, employee relations, performance management, and
+                benefits administration.
               </p>
             </Card>
             <div>
@@ -55,8 +57,8 @@ const Specialities = () => {
                 Compensation Consulting
               </h5>
               <p className="font-normal text-[#787C8B]">
-                We analyse your websites structure, internal architecture &
-                other key elements Consectetur adipiscing.
+                Our Compensation Consulting services provide expert advice on
+                structuring competitive and equitable compensation packages.
               </p>
             </Card>
             <div>
@@ -78,8 +80,8 @@ const Specialities = () => {
                 HR Consulting
               </h5>
               <p className="font-normal text-[#787C8B]">
-                We analyse your websites structure, internal architecture &
-                other key elements Consectetur adipiscing.
+                Our HR Consulting services offer strategic insights and
+                practical solutions to address your human resources challenges.
               </p>
             </Card>
             <div>
@@ -92,8 +94,9 @@ const Specialities = () => {
                 Strategic Planning
               </h5>
               <p className="font-normal text-[#787C8B]">
-                We analyse your websites structure, internal architecture &
-                other key elements Consectetur adipiscing.
+                Our Strategic Planning services assist organizations in defining
+                their vision, setting achievable goals, and developing
+                actionable plans.
               </p>
             </Card>
             <div>
@@ -106,8 +109,10 @@ const Specialities = () => {
                 Employee Training
               </h5>
               <p className="font-normal text-[#787C8B]">
-                We analyse your websites structure, internal architecture &
-                other key elements Consectetur adipiscing.
+                Our Employee Training programs are tailored to enhance the
+                skills and competencies of your workforce. We offer a variety of
+                training modules designed to improve performance, boost
+                productivity, and foster professional development.
               </p>
             </Card>
             <div>

@@ -29,7 +29,10 @@ const Banner = () => {
               <h1 className="text-6xl text-[#353B6E] font-bold lg:w-[550px] mx-auto">
                 Hiring the best in the industry.
               </h1>
-              <p>Take the mystery out of selecting and developing leaders.</p>
+              <p>
+                Take the mystery out of selecting perfect employees and hire at
+                upmost precision.
+              </p>
             </div>
             <Lottie animationData={banner1} loop={true} className="h-[700px]" />
           </div>
